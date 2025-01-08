@@ -1,0 +1,14 @@
+{
+    "Version": "1.2",
+    "Data": {
+        "Source": "c:\\users\\u1482733\\documents\\github\\ghosttrap\\ghosttrap\\intermediate\\build\\win64\\x64\\unrealeditor\\development\\ghosttrap\\permoduleinline.gen.cpp",
+        "ProvidedModule": "",
+        "PCH": "c:\\users\\u1482733\\documents\\github\\ghosttrap\\ghosttrap\\intermediate\\build\\win64\\x64\\ghosttrapeditor\\development\\unrealed\\sharedpch.unrealed.project.valapi.cpp20.h.pch",
+        "Includes": [
+            "c:\\users\\u1482733\\documents\\github\\ghosttrap\\ghosttrap\\intermediate\\build\\win64\\x64\\unrealeditor\\development\\ghosttrap\\definitions.ghosttrap.h",
+            "c:\\program files\\epic games\\ue_5.5\\engine\\source\\runtime\\core\\public\\hal\\permoduleinline.inl"
+        ],
+        "ImportedModules": [],
+        "ImportedHeaderUnits": []
+    }
+}
