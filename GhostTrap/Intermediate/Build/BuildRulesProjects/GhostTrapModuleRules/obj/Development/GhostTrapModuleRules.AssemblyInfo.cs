@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("GhostTrapModuleRules")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Development")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+4946758bd4d94c367a9e721d68f3041a86aaf0e2")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a62743612116e92254c17552f471ee77e2b8f8db")]
 [assembly: System.Reflection.AssemblyProductAttribute("GhostTrapModuleRules")]
 [assembly: System.Reflection.AssemblyTitleAttribute("GhostTrapModuleRules")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
