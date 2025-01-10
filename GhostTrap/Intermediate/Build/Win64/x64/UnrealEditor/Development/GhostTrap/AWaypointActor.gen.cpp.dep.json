@@ -1,0 +1,15 @@
+{
+    "Version": "1.2",
+    "Data": {
+        "Source": "c:\\users\\u1482733\\documents\\github\\ghosttrap\\ghosttrap\\intermediate\\build\\win64\\unrealeditor\\inc\\ghosttrap\\uht\\awaypointactor.gen.cpp",
+        "ProvidedModule": "",
+        "PCH": "c:\\users\\u1482733\\documents\\github\\ghosttrap\\ghosttrap\\intermediate\\build\\win64\\x64\\ghosttrapeditor\\development\\unrealed\\sharedpch.unrealed.project.valapi.cpp20.h.pch",
+        "Includes": [
+            "c:\\users\\u1482733\\documents\\github\\ghosttrap\\ghosttrap\\intermediate\\build\\win64\\x64\\unrealeditor\\development\\ghosttrap\\definitions.ghosttrap.h",
+            "c:\\users\\u1482733\\documents\\github\\ghosttrap\\ghosttrap\\source\\ghosttrap\\awaypointactor.h",
+            "c:\\users\\u1482733\\documents\\github\\ghosttrap\\ghosttrap\\intermediate\\build\\win64\\unrealeditor\\inc\\ghosttrap\\uht\\awaypointactor.generated.h"
+        ],
+        "ImportedModules": [],
+        "ImportedHeaderUnits": []
+    }
+}

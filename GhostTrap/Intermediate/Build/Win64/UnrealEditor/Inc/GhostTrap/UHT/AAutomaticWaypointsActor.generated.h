@@ -14,7 +14,7 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #endif
 #define GHOSTTRAP_AAutomaticWaypointsActor_generated_h
 
-#define FID_GhostTrap_Source_GhostTrap_AAutomaticWaypointsActor_h_15_INCLASS_NO_PURE_DECLS \
+#define FID_Users_u1482733_Documents_GitHub_GhostTrap_GhostTrap_Source_GhostTrap_AAutomaticWaypointsActor_h_23_INCLASS_NO_PURE_DECLS \
 private: \
 	static void StaticRegisterNativesAAAutomaticWaypointsActor(); \
 	friend struct Z_Construct_UClass_AAAutomaticWaypointsActor_Statics; \
@@ -23,7 +23,7 @@ public: \
 	DECLARE_SERIALIZER(AAAutomaticWaypointsActor)
 
 
-#define FID_GhostTrap_Source_GhostTrap_AAutomaticWaypointsActor_h_15_ENHANCED_CONSTRUCTORS \
+#define FID_Users_u1482733_Documents_GitHub_GhostTrap_GhostTrap_Source_GhostTrap_AAutomaticWaypointsActor_h_23_ENHANCED_CONSTRUCTORS \
 private: \
 	/** Private move- and copy-constructors, should never be used */ \
 	AAAutomaticWaypointsActor(AAAutomaticWaypointsActor&&); \
@@ -35,12 +35,12 @@ public: \
 	NO_API virtual ~AAAutomaticWaypointsActor();
 
 
-#define FID_GhostTrap_Source_GhostTrap_AAutomaticWaypointsActor_h_12_PROLOG
-#define FID_GhostTrap_Source_GhostTrap_AAutomaticWaypointsActor_h_15_GENERATED_BODY \
+#define FID_Users_u1482733_Documents_GitHub_GhostTrap_GhostTrap_Source_GhostTrap_AAutomaticWaypointsActor_h_20_PROLOG
+#define FID_Users_u1482733_Documents_GitHub_GhostTrap_GhostTrap_Source_GhostTrap_AAutomaticWaypointsActor_h_23_GENERATED_BODY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
-	FID_GhostTrap_Source_GhostTrap_AAutomaticWaypointsActor_h_15_INCLASS_NO_PURE_DECLS \
-	FID_GhostTrap_Source_GhostTrap_AAutomaticWaypointsActor_h_15_ENHANCED_CONSTRUCTORS \
+	FID_Users_u1482733_Documents_GitHub_GhostTrap_GhostTrap_Source_GhostTrap_AAutomaticWaypointsActor_h_23_INCLASS_NO_PURE_DECLS \
+	FID_Users_u1482733_Documents_GitHub_GhostTrap_GhostTrap_Source_GhostTrap_AAutomaticWaypointsActor_h_23_ENHANCED_CONSTRUCTORS \
 private: \
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 
@@ -48,7 +48,7 @@ PRAGMA_ENABLE_DEPRECATION_WARNINGS
 template<> GHOSTTRAP_API UClass* StaticClass<class AAAutomaticWaypointsActor>();
 
 #undef CURRENT_FILE_ID
-#define CURRENT_FILE_ID FID_GhostTrap_Source_GhostTrap_AAutomaticWaypointsActor_h
+#define CURRENT_FILE_ID FID_Users_u1482733_Documents_GitHub_GhostTrap_GhostTrap_Source_GhostTrap_AAutomaticWaypointsActor_h
 
 
 PRAGMA_ENABLE_DEPRECATION_WARNINGS

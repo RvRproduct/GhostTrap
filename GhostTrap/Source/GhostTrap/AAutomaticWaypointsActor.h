@@ -9,6 +9,14 @@
 
 #include "AAutomaticWaypointsActor.generated.h"
 
+enum class WaypointDirection : uint8
+{
+	Left,
+	Right,
+	Up,
+	Down
+};
+
 UCLASS()
 class GHOSTTRAP_API AAAutomaticWaypointsActor : public AActor
 {
@@ -27,6 +35,7 @@ public:
 	TArray<AAWaypointActor*> waypoints;
 
 	void SetUpWaypoints();
-	void CheckValidWaypointPath(AAWaypointActor* currentWaypoint, AAWaypointActor* nextWaypoint);
-	void CheckIfWaypointPathIsBlocked(AAWaypointActor* currentWaypoint, AAWaypointActor* nextWaypoint);
+	void CheckValidWaypointPath(AAWaypointActor* currentWaypoint, AAWaypointActor* otherWaypoint);
+	void CheckIfWaypointPathIsBlocked(UWorld* World, WaypointDirection waypointDirection, AAWaypointActor* currentWaypoint, AAWaypointActor* otherWaypoint, FVector currentWaypointPosition, FVector otherWaypointPosition, FName TagToCheck);
+	void AddPathToWaypoint(WaypointDirection waypointDirection, AAWaypointActor* currentWaypoint, AAWaypointActor* otherWaypoint);
 };

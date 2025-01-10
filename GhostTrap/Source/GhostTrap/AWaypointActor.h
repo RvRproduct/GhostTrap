@@ -16,8 +16,8 @@ public:
 	AAWaypointActor();
 
 public:
-	bool pathLeft;
-	bool pathRight;
-	bool pathUp;
-	bool pathDown;
+	TArray<AAWaypointActor*> pathLeftWaypoints;
+	TArray<AAWaypointActor*> pathRightWaypoints;
+	TArray<AAWaypointActor*> pathUpWaypoints;
+	TArray<AAWaypointActor*> pathDownWaypoints;
 };

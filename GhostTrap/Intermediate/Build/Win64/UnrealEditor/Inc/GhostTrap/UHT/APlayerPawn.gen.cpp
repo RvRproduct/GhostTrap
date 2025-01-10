@@ -77,14 +77,14 @@ AAPlayerPawn::~AAPlayerPawn() {}
 // End Class AAPlayerPawn
 
 // Begin Registration
-struct Z_CompiledInDeferFile_FID_GhostTrap_Source_GhostTrap_APlayerPawn_h_Statics
+struct Z_CompiledInDeferFile_FID_Users_u1482733_Documents_GitHub_GhostTrap_GhostTrap_Source_GhostTrap_APlayerPawn_h_Statics
 {
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
 		{ Z_Construct_UClass_AAPlayerPawn, AAPlayerPawn::StaticClass, TEXT("AAPlayerPawn"), &Z_Registration_Info_UClass_AAPlayerPawn, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AAPlayerPawn), 2573770180U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_GhostTrap_Source_GhostTrap_APlayerPawn_h_1504950599(TEXT("/Script/GhostTrap"),
-	Z_CompiledInDeferFile_FID_GhostTrap_Source_GhostTrap_APlayerPawn_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_GhostTrap_Source_GhostTrap_APlayerPawn_h_Statics::ClassInfo),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_u1482733_Documents_GitHub_GhostTrap_GhostTrap_Source_GhostTrap_APlayerPawn_h_1504950599(TEXT("/Script/GhostTrap"),
+	Z_CompiledInDeferFile_FID_Users_u1482733_Documents_GitHub_GhostTrap_GhostTrap_Source_GhostTrap_APlayerPawn_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Users_u1482733_Documents_GitHub_GhostTrap_GhostTrap_Source_GhostTrap_APlayerPawn_h_Statics::ClassInfo),
 	nullptr, 0,
 	nullptr, 0);
 // End Registration

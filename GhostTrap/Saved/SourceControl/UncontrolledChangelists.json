@@ -5,6 +5,13 @@
 			"guid": "00000000000000000000000000000000",
 			"description": "Default Uncontrolled Changelist",
 			"files": [
+				"C:/Users/u1482733/Documents/GitHub/GhostTrap/GhostTrap/Content/StarterContent/Architecture/Floor_400x400.uasset",
+				"C:/Users/u1482733/Documents/GitHub/GhostTrap/GhostTrap/Content/BP_PlayerPawn.uasset",
+				"C:/Users/u1482733/Documents/GitHub/GhostTrap/GhostTrap/Content/BluePrints/BP_PlayerPawn.uasset",
+				"C:/Users/u1482733/Documents/GitHub/GhostTrap/GhostTrap/Content/BluePrints/BP_WaypointActor.uasset",
+				"C:/Users/u1482733/Documents/GitHub/GhostTrap/GhostTrap/Content/BluePrints/Wall.uasset",
+				"C:/Users/u1482733/Documents/GitHub/GhostTrap/GhostTrap/Content/Input/IA_Move.uasset",
+				"C:/Users/u1482733/Documents/GitHub/GhostTrap/GhostTrap/Content/Input/IMC_InputMappings.uasset",
 				"C:/Users/segan/Documents/GitHub/GhostTrap/GhostTrap/Content/MapOne_HLOD0_Instancing.uasset",
 				"C:/Users/segan/Documents/GitHub/GhostTrap/GhostTrap/Content/__ExternalActors__/MapOne/6/IR/K6472EQ54LJAH2BGDNDTJ3.uasset",
 				"C:/Users/segan/Documents/GitHub/GhostTrap/GhostTrap/Content/__ExternalObjects__/MapOne/B/IL/KSH9IOIVO6REW0PBB0ATDP.uasset",
@@ -150,8 +157,7 @@
 				"C:/Users/segan/Documents/GitHub/GhostTrap/GhostTrap/Content/__ExternalActors__/MapOne/2/74/1UNVP0HUWD0G87XBEYU8HX.uasset",
 				"C:/Users/segan/Documents/GitHub/GhostTrap/GhostTrap/Content/__ExternalActors__/MapOne/5/N8/W7WZYNNJLINGUP1LHAJAAD.uasset",
 				"C:/Users/segan/Documents/GitHub/GhostTrap/GhostTrap/Content/__ExternalActors__/MapOne/E/U1/ZFZ295BVNJLDLJ4BC5OMMR.uasset",
-				"C:/Users/segan/Documents/GitHub/GhostTrap/GhostTrap/Content/MapOne.umap",
-				"C:/Users/u1482733/Documents/GitHub/GhostTrap/GhostTrap/Content/StarterContent/Architecture/Floor_400x400.uasset"
+				"C:/Users/segan/Documents/GitHub/GhostTrap/GhostTrap/Content/MapOne.umap"
 			]
 		}
 	]

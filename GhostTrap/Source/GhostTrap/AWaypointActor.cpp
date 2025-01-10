@@ -6,10 +6,7 @@
 // Sets default values
 AAWaypointActor::AAWaypointActor()
 {
-	pathLeft = false;
-	pathRight = false;
-	pathUp = false;
-	pathDown = false;
+
 }
 
 
