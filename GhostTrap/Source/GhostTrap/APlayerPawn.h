@@ -58,6 +58,7 @@ public:
 	void MoveRight(const FInputActionValue& Value);
 	void MoveUp(const FInputActionValue& Value);
 	void MoveDown(const FInputActionValue& Value);
+	void ApplyWaypointMovement(TArray<AAWaypointActor*> pathDirectionWaypoints);
 
 	UFUNCTION()
 	void OnOverlapBegin(UPrimitiveComponent* OverlapComponent,

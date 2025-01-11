@@ -57,9 +57,9 @@ struct Z_Construct_UClass_AAIBasePawn_Statics
 	};
 	static const UECodeGen_Private::FClassParams ClassParams;
 };
-const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_AAIBasePawn_Statics::NewProp_maxSpeed = { "maxSpeed", nullptr, (EPropertyFlags)0x0040000000000001, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AAIBasePawn, maxSpeed), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_maxSpeed_MetaData), NewProp_maxSpeed_MetaData) };
-const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_AAIBasePawn_Statics::NewProp_maxForce = { "maxForce", nullptr, (EPropertyFlags)0x0040000000000001, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AAIBasePawn, maxForce), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_maxForce_MetaData), NewProp_maxForce_MetaData) };
-const UECodeGen_Private::FStructPropertyParams Z_Construct_UClass_AAIBasePawn_Statics::NewProp_currentVelocity = { "currentVelocity", nullptr, (EPropertyFlags)0x0040000000020001, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AAIBasePawn, currentVelocity), Z_Construct_UScriptStruct_FVector, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_currentVelocity_MetaData), NewProp_currentVelocity_MetaData) };
+const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_AAIBasePawn_Statics::NewProp_maxSpeed = { "maxSpeed", nullptr, (EPropertyFlags)0x0020080000000001, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AAIBasePawn, maxSpeed), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_maxSpeed_MetaData), NewProp_maxSpeed_MetaData) };
+const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_AAIBasePawn_Statics::NewProp_maxForce = { "maxForce", nullptr, (EPropertyFlags)0x0020080000000001, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AAIBasePawn, maxForce), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_maxForce_MetaData), NewProp_maxForce_MetaData) };
+const UECodeGen_Private::FStructPropertyParams Z_Construct_UClass_AAIBasePawn_Statics::NewProp_currentVelocity = { "currentVelocity", nullptr, (EPropertyFlags)0x0020080000020001, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AAIBasePawn, currentVelocity), Z_Construct_UScriptStruct_FVector, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_currentVelocity_MetaData), NewProp_currentVelocity_MetaData) };
 const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_AAIBasePawn_Statics::PropPointers[] = {
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AAIBasePawn_Statics::NewProp_maxSpeed,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AAIBasePawn_Statics::NewProp_maxForce,
@@ -106,10 +106,10 @@ AAIBasePawn::~AAIBasePawn() {}
 struct Z_CompiledInDeferFile_FID_GhostTrap_Source_GhostTrap_AIBasePawn_h_Statics
 {
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_AAIBasePawn, AAIBasePawn::StaticClass, TEXT("AAIBasePawn"), &Z_Registration_Info_UClass_AAIBasePawn, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AAIBasePawn), 562106041U) },
+		{ Z_Construct_UClass_AAIBasePawn, AAIBasePawn::StaticClass, TEXT("AAIBasePawn"), &Z_Registration_Info_UClass_AAIBasePawn, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AAIBasePawn), 1173333721U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_GhostTrap_Source_GhostTrap_AIBasePawn_h_3387451684(TEXT("/Script/GhostTrap"),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_GhostTrap_Source_GhostTrap_AIBasePawn_h_745686983(TEXT("/Script/GhostTrap"),
 	Z_CompiledInDeferFile_FID_GhostTrap_Source_GhostTrap_AIBasePawn_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_GhostTrap_Source_GhostTrap_AIBasePawn_h_Statics::ClassInfo),
 	nullptr, 0,
 	nullptr, 0);

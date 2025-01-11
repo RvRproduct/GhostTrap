@@ -1,0 +1,13 @@
+{
+    "Version": "1.2",
+    "Data": {
+        "Source": "c:\\users\\segan\\documents\\github\\ghosttrap\\ghosttrap\\source\\ghosttrap\\aimovementstates.cpp",
+        "ProvidedModule": "",
+        "PCH": "c:\\users\\segan\\documents\\github\\ghosttrap\\ghosttrap\\intermediate\\build\\win64\\x64\\ghosttrapeditor\\development\\unrealed\\sharedpch.unrealed.project.valapi.cpp20.h.pch",
+        "Includes": [
+            "c:\\users\\segan\\documents\\github\\ghosttrap\\ghosttrap\\intermediate\\build\\win64\\x64\\unrealeditor\\development\\ghosttrap\\definitions.ghosttrap.h"
+        ],
+        "ImportedModules": [],
+        "ImportedHeaderUnits": []
+    }
+}

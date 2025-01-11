@@ -26,6 +26,11 @@ void AAPlayerPawn::BeginPlay()
 {
 	Super::BeginPlay();
 
+	if (playerCurrentWaypoint != nullptr)
+	{
+		this->SetActorLocation(playerCurrentWaypoint->GetActorLocation());
+	}
+
 	if (!CollisionComponent)
 	{
 
@@ -52,6 +57,8 @@ void AAPlayerPawn::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
+	Seek(currentVelocity, DeltaTime);
+
 }
 
 // Called to bind functionality to input
@@ -70,33 +77,53 @@ void AAPlayerPawn::SetupPlayerInputComponent(UInputComponent* PlayerInputCompone
 
 }
 
+void AAPlayerPawn::ApplyWaypointMovement(TArray<AAWaypointActor*> pathDirectionWaypoints)
+{
+	float distanceBetweenOldWaypoints = INFINITY;
+	AAWaypointActor* targetWaypoint = nullptr;
+	FVector targetWaypointPosition = FVector::ZeroVector;
+
+	if (pathDirectionWaypoints.Num() == 0)
+	{
+		currentVelocity = FVector::ZeroVector;
+		playerNextWaypoint = playerCurrentWaypoint;
+
+		return;
+	}
+
+
+	for (AAWaypointActor* directionWaypoint : pathDirectionWaypoints)
+	{
+		if (targetWaypointPosition == FVector::ZeroVector)
+		{
+			targetWaypointPosition = directionWaypoint->GetActorLocation();
+			targetWaypoint = directionWaypoint;
+
+			return;
+		}
+
+		float distanceBetweenNewWaypoints = FVector::Dist(playerCurrentWaypoint->GetActorLocation(), directionWaypoint->GetActorLocation());
+
+		if (distanceBetweenOldWaypoints > distanceBetweenNewWaypoints)
+		{
+			targetWaypointPosition = directionWaypoint->GetActorLocation();
+
+			distanceBetweenOldWaypoints = distanceBetweenNewWaypoints;
+
+			targetWaypoint = directionWaypoint;
+		}
+	}
+
+	playerNextWaypoint = targetWaypoint;
+}
+
 void AAPlayerPawn::MoveLeft(const FInputActionValue& Value)
 {
 	const float InputValue = Value.Get<float>();
 
-	float distanceBetweenOldWaypoints = INFINITY;
-	FVector targetWaypointPosition = FVector().ZeroVector;
-
 	if (InputValue != 0.0f)
 	{
-		for (AAWaypointActor* leftWaypoint : playerCurrentWaypoint->pathLeftWaypoints)
-		{
-			if (targetWaypointPosition == FVector().ZeroVector)
-			{
-				targetWaypointPosition = leftWaypoint->GetActorLocation();
-
-				return;
-			}
-
-			float distanceBetweenNewWaypoints = FVector::Dist(playerCurrentWaypoint->GetActorLocation(), leftWaypoint->GetActorLocation());
-
-			if (distanceBetweenOldWaypoints > distanceBetweenNewWaypoints)
-			{
-				targetWaypointPosition = leftWaypoint->GetActorLocation();
-
-				distanceBetweenOldWaypoints = distanceBetweenNewWaypoints;
-			}
-		}
+		ApplyWaypointMovement(playerCurrentWaypoint->pathLeftWaypoints);
 	}
 }
 
@@ -107,7 +134,7 @@ void AAPlayerPawn::MoveRight(const FInputActionValue& Value)
 
 	if (InputValue != 0.0f)
 	{
-
+		ApplyWaypointMovement(playerCurrentWaypoint->pathRightWaypoints);
 	}
 }
 
@@ -117,7 +144,7 @@ void AAPlayerPawn::MoveUp(const FInputActionValue& Value)
 
 	if (InputValue != 0.0f)
 	{
-
+		ApplyWaypointMovement(playerCurrentWaypoint->pathUpWaypoints);
 	}
 }
 
@@ -127,7 +154,7 @@ void AAPlayerPawn::MoveDown(const FInputActionValue& Value)
 
 	if (InputValue != 0.0f)
 	{
-
+		ApplyWaypointMovement(playerCurrentWaypoint->pathDownWaypoints);
 	}
 }
 
