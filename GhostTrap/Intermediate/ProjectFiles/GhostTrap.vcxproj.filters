@@ -57,5 +57,6 @@
     <ClCompile Include="..\..\Source\GhostTrap\GhostTrap.h">
       <Filter>Source\GhostTrap</Filter>
     </ClCompile>
+    <None Include="cpp.hint" />
   </ItemGroup>
 </Project>
