@@ -14,16 +14,16 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #endif
 #define GHOSTTRAP_APlayerPawn_generated_h
 
-#define FID_Users_u1482733_Documents_GitHub_GhostTrap_GhostTrap_Source_GhostTrap_APlayerPawn_h_16_INCLASS_NO_PURE_DECLS \
+#define FID_GhostTrap_Source_GhostTrap_APlayerPawn_h_19_INCLASS_NO_PURE_DECLS \
 private: \
 	static void StaticRegisterNativesAAPlayerPawn(); \
 	friend struct Z_Construct_UClass_AAPlayerPawn_Statics; \
 public: \
-	DECLARE_CLASS(AAPlayerPawn, APawn, COMPILED_IN_FLAGS(0 | CLASS_Config), CASTCLASS_None, TEXT("/Script/GhostTrap"), NO_API) \
+	DECLARE_CLASS(AAPlayerPawn, AAIBasePawn, COMPILED_IN_FLAGS(0 | CLASS_Config), CASTCLASS_None, TEXT("/Script/GhostTrap"), NO_API) \
 	DECLARE_SERIALIZER(AAPlayerPawn)
 
 
-#define FID_Users_u1482733_Documents_GitHub_GhostTrap_GhostTrap_Source_GhostTrap_APlayerPawn_h_16_ENHANCED_CONSTRUCTORS \
+#define FID_GhostTrap_Source_GhostTrap_APlayerPawn_h_19_ENHANCED_CONSTRUCTORS \
 private: \
 	/** Private move- and copy-constructors, should never be used */ \
 	AAPlayerPawn(AAPlayerPawn&&); \
@@ -35,12 +35,12 @@ public: \
 	NO_API virtual ~AAPlayerPawn();
 
 
-#define FID_Users_u1482733_Documents_GitHub_GhostTrap_GhostTrap_Source_GhostTrap_APlayerPawn_h_13_PROLOG
-#define FID_Users_u1482733_Documents_GitHub_GhostTrap_GhostTrap_Source_GhostTrap_APlayerPawn_h_16_GENERATED_BODY \
+#define FID_GhostTrap_Source_GhostTrap_APlayerPawn_h_16_PROLOG
+#define FID_GhostTrap_Source_GhostTrap_APlayerPawn_h_19_GENERATED_BODY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
-	FID_Users_u1482733_Documents_GitHub_GhostTrap_GhostTrap_Source_GhostTrap_APlayerPawn_h_16_INCLASS_NO_PURE_DECLS \
-	FID_Users_u1482733_Documents_GitHub_GhostTrap_GhostTrap_Source_GhostTrap_APlayerPawn_h_16_ENHANCED_CONSTRUCTORS \
+	FID_GhostTrap_Source_GhostTrap_APlayerPawn_h_19_INCLASS_NO_PURE_DECLS \
+	FID_GhostTrap_Source_GhostTrap_APlayerPawn_h_19_ENHANCED_CONSTRUCTORS \
 private: \
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 
@@ -48,7 +48,7 @@ PRAGMA_ENABLE_DEPRECATION_WARNINGS
 template<> GHOSTTRAP_API UClass* StaticClass<class AAPlayerPawn>();
 
 #undef CURRENT_FILE_ID
-#define CURRENT_FILE_ID FID_Users_u1482733_Documents_GitHub_GhostTrap_GhostTrap_Source_GhostTrap_APlayerPawn_h
+#define CURRENT_FILE_ID FID_GhostTrap_Source_GhostTrap_APlayerPawn_h
 
 
 PRAGMA_ENABLE_DEPRECATION_WARNINGS

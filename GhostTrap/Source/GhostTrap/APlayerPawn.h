@@ -5,13 +5,16 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Pawn.h"
 #include "Components/BoxComponent.h"
+#include "EnhancedInputComponent.h"
+#include "EnhancedInputSubsystems.h"
 #include "AWaypointActor.h"
+#include "AIBasePawn.h"
 
 #include "APlayerPawn.generated.h"
 
 
 UCLASS()
-class GHOSTTRAP_API AAPlayerPawn : public APawn
+class GHOSTTRAP_API AAPlayerPawn : public AAIBasePawn
 {
 	GENERATED_BODY()
 
@@ -21,6 +24,18 @@ public:
 
 	AAWaypointActor* playerCurrentWaypoint;
 	AAWaypointActor* playerNextWaypoint;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Input")
+	TObjectPtr<UInputAction> MoveLeftAction;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Input")
+	TObjectPtr<UInputAction> MoveRightAction;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Input")
+	TObjectPtr<UInputAction> MoveUpAction;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Input")
+	TObjectPtr<UInputAction> MoveDownAction;
 
 protected:
 
@@ -34,7 +49,8 @@ public:
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
-	void MoveVertical();
-	void MoveHorizontal();
-
+	void MoveLeft(const FInputActionValue& Value);
+	void MoveRight(const FInputActionValue& Value);
+	void MoveUp(const FInputActionValue& Value);
+	void MoveDown(const FInputActionValue& Value);
 };

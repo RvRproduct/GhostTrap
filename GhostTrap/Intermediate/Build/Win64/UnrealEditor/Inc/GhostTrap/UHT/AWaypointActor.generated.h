@@ -14,7 +14,7 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #endif
 #define GHOSTTRAP_AWaypointActor_generated_h
 
-#define FID_Users_u1482733_Documents_GitHub_GhostTrap_GhostTrap_Source_GhostTrap_AWaypointActor_h_12_INCLASS_NO_PURE_DECLS \
+#define FID_GhostTrap_Source_GhostTrap_AWaypointActor_h_12_INCLASS_NO_PURE_DECLS \
 private: \
 	static void StaticRegisterNativesAAWaypointActor(); \
 	friend struct Z_Construct_UClass_AAWaypointActor_Statics; \
@@ -23,7 +23,7 @@ public: \
 	DECLARE_SERIALIZER(AAWaypointActor)
 
 
-#define FID_Users_u1482733_Documents_GitHub_GhostTrap_GhostTrap_Source_GhostTrap_AWaypointActor_h_12_ENHANCED_CONSTRUCTORS \
+#define FID_GhostTrap_Source_GhostTrap_AWaypointActor_h_12_ENHANCED_CONSTRUCTORS \
 private: \
 	/** Private move- and copy-constructors, should never be used */ \
 	AAWaypointActor(AAWaypointActor&&); \
@@ -35,12 +35,12 @@ public: \
 	NO_API virtual ~AAWaypointActor();
 
 
-#define FID_Users_u1482733_Documents_GitHub_GhostTrap_GhostTrap_Source_GhostTrap_AWaypointActor_h_9_PROLOG
-#define FID_Users_u1482733_Documents_GitHub_GhostTrap_GhostTrap_Source_GhostTrap_AWaypointActor_h_12_GENERATED_BODY \
+#define FID_GhostTrap_Source_GhostTrap_AWaypointActor_h_9_PROLOG
+#define FID_GhostTrap_Source_GhostTrap_AWaypointActor_h_12_GENERATED_BODY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
-	FID_Users_u1482733_Documents_GitHub_GhostTrap_GhostTrap_Source_GhostTrap_AWaypointActor_h_12_INCLASS_NO_PURE_DECLS \
-	FID_Users_u1482733_Documents_GitHub_GhostTrap_GhostTrap_Source_GhostTrap_AWaypointActor_h_12_ENHANCED_CONSTRUCTORS \
+	FID_GhostTrap_Source_GhostTrap_AWaypointActor_h_12_INCLASS_NO_PURE_DECLS \
+	FID_GhostTrap_Source_GhostTrap_AWaypointActor_h_12_ENHANCED_CONSTRUCTORS \
 private: \
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 
@@ -48,7 +48,7 @@ PRAGMA_ENABLE_DEPRECATION_WARNINGS
 template<> GHOSTTRAP_API UClass* StaticClass<class AAWaypointActor>();
 
 #undef CURRENT_FILE_ID
-#define CURRENT_FILE_ID FID_Users_u1482733_Documents_GitHub_GhostTrap_GhostTrap_Source_GhostTrap_AWaypointActor_h
+#define CURRENT_FILE_ID FID_GhostTrap_Source_GhostTrap_AWaypointActor_h
 
 
 PRAGMA_ENABLE_DEPRECATION_WARNINGS

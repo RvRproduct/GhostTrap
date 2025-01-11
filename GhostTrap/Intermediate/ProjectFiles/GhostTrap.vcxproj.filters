@@ -36,6 +36,15 @@
     <ClCompile Include="..\..\Source\GhostTrap\AAutomaticWaypointsActor.h">
       <Filter>Source\GhostTrap</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Source\GhostTrap\AIBasePawn.cpp">
+      <Filter>Source\GhostTrap</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\GhostTrap\AIBasePawn.h">
+      <Filter>Source\GhostTrap</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\GhostTrap\AIMovementStates.cpp">
+      <Filter>Source\GhostTrap</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\Source\GhostTrap\APlayerPawn.cpp">
       <Filter>Source\GhostTrap</Filter>
     </ClCompile>
@@ -57,6 +66,5 @@
     <ClCompile Include="..\..\Source\GhostTrap\GhostTrap.h">
       <Filter>Source\GhostTrap</Filter>
     </ClCompile>
-    <None Include="cpp.hint" />
   </ItemGroup>
 </Project>

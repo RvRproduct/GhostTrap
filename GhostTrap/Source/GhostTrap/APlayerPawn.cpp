@@ -33,5 +33,40 @@ void AAPlayerPawn::SetupPlayerInputComponent(UInputComponent* PlayerInputCompone
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
 
+	if (UEnhancedInputComponent* EnhancedInputComponent = Cast<UEnhancedInputComponent>(PlayerInputComponent))
+	{
+		// Binding Each Movement Direction
+		EnhancedInputComponent->BindAction(MoveLeftAction, ETriggerEvent::Triggered, this, &AAPlayerPawn::MoveLeft);
+		EnhancedInputComponent->BindAction(MoveRightAction, ETriggerEvent::Triggered, this, &AAPlayerPawn::MoveRight);
+		EnhancedInputComponent->BindAction(MoveUpAction, ETriggerEvent::Triggered, this, &AAPlayerPawn::MoveUp);
+		EnhancedInputComponent->BindAction(MoveDownAction, ETriggerEvent::Triggered, this, &AAPlayerPawn::MoveDown);
+	}
+
+}
+
+void AAPlayerPawn::MoveLeft(const FInputActionValue& Value)
+{
+	const float InputValue = Value.Get<float>();
+
+	if (InputValue != 0.0f)
+	{
+
+	}
+}
+
+
+void AAPlayerPawn::MoveRight(const FInputActionValue& Value)
+{
+
+}
+
+void AAPlayerPawn::MoveUp(const FInputActionValue& Value)
+{
+
+}
+
+void AAPlayerPawn::MoveDown(const FInputActionValue& Value)
+{
+
 }
 
