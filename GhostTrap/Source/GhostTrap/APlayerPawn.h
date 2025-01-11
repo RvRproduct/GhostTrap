@@ -22,7 +22,9 @@ public:
 	// Sets default values for this pawn's properties
 	AAPlayerPawn();
 
+	UPROPERTY(EditAnywhere, Category = "Current Waypoint")
 	AAWaypointActor* playerCurrentWaypoint;
+
 	AAWaypointActor* playerNextWaypoint;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Input")
@@ -42,6 +44,9 @@ protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Collision", meta = (AllowPrivateAccess = "true"))
+	UBoxComponent* CollisionComponent;
+
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
@@ -53,4 +58,9 @@ public:
 	void MoveRight(const FInputActionValue& Value);
 	void MoveUp(const FInputActionValue& Value);
 	void MoveDown(const FInputActionValue& Value);
+
+	UFUNCTION()
+	void OnOverlapBegin(UPrimitiveComponent* OverlapComponent,
+		AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex,
+		bool bFromSweep, const FHitResult& SweepResult);
 };

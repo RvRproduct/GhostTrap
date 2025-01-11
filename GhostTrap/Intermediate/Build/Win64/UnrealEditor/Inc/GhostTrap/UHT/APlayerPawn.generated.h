@@ -9,10 +9,17 @@
 #include "UObject/ScriptMacros.h"
 
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
+class AActor;
+class UPrimitiveComponent;
+struct FHitResult;
 #ifdef GHOSTTRAP_APlayerPawn_generated_h
 #error "APlayerPawn.generated.h already included, missing '#pragma once' in APlayerPawn.h"
 #endif
 #define GHOSTTRAP_APlayerPawn_generated_h
+
+#define FID_GhostTrap_Source_GhostTrap_APlayerPawn_h_19_RPC_WRAPPERS_NO_PURE_DECLS \
+	DECLARE_FUNCTION(execOnOverlapBegin);
+
 
 #define FID_GhostTrap_Source_GhostTrap_APlayerPawn_h_19_INCLASS_NO_PURE_DECLS \
 private: \
@@ -39,6 +46,7 @@ public: \
 #define FID_GhostTrap_Source_GhostTrap_APlayerPawn_h_19_GENERATED_BODY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
+	FID_GhostTrap_Source_GhostTrap_APlayerPawn_h_19_RPC_WRAPPERS_NO_PURE_DECLS \
 	FID_GhostTrap_Source_GhostTrap_APlayerPawn_h_19_INCLASS_NO_PURE_DECLS \
 	FID_GhostTrap_Source_GhostTrap_APlayerPawn_h_19_ENHANCED_CONSTRUCTORS \
 private: \
