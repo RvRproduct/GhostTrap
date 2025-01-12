@@ -2,6 +2,7 @@
 #include "APlayerPawn.h"
 
 #include "InputMappingContext.h"
+#include "Camera/CameraComponent.h"
 
 
 // Sets default values
@@ -9,6 +10,9 @@ AAPlayerPawn::AAPlayerPawn()
 {
  	// Set this pawn to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
+
+	Camera = CreateDefaultSubobject<UCameraComponent>("Camera");
+	Camera->SetupAttachment(RootComponent);
 
 	if (playerCurrentWaypoint != nullptr)
 	{
@@ -30,6 +34,12 @@ void AAPlayerPawn::BeginPlay()
 
 	if (playerCurrentWaypoint != nullptr)
 	{
+
+		if (playerNextWaypoint == nullptr)
+		{
+			playerNextWaypoint = playerCurrentWaypoint;
+		}
+
 		this->SetActorLocation(playerCurrentWaypoint->GetActorLocation());
 	}
 
@@ -59,7 +69,7 @@ void AAPlayerPawn::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
-	Seek(currentVelocity, DeltaTime);
+	Seek(playerNextWaypoint->GetActorLocation(), DeltaTime);
 
 }
 
@@ -101,13 +111,13 @@ void AAPlayerPawn::ApplyWaypointMovement(TArray<AAWaypointActor*> pathDirectionW
 
 	for (AAWaypointActor* directionWaypoint : pathDirectionWaypoints)
 	{
-		if (targetWaypointPosition == FVector::ZeroVector)
+		/*if (targetWaypointPosition == FVector::ZeroVector)
 		{
 			targetWaypointPosition = directionWaypoint->GetActorLocation();
 			targetWaypoint = directionWaypoint;
 
 			return;
-		}
+		}*/
 
 		float distanceBetweenNewWaypoints = FVector::Dist(playerCurrentWaypoint->GetActorLocation(), directionWaypoint->GetActorLocation());
 
@@ -140,6 +150,15 @@ void AAPlayerPawn::Move(const FInputActionValue& Value)
 	
 	if (MovementInput.X < 0) // Left
 	{
+		if (GEngine)
+		{
+			GEngine->AddOnScreenDebugMessage(
+				-1,
+				5.f,
+				FColor::Yellow,
+				FString::Printf(TEXT("The Movement Left: %s"), *MovementInput.ToString())
+			);
+		}
 		ApplyWaypointMovement(playerCurrentWaypoint->pathLeftWaypoints);
 	}
 	else if (MovementInput.X > 0) // Right
@@ -156,7 +175,21 @@ void AAPlayerPawn::Move(const FInputActionValue& Value)
 	{
 		ApplyWaypointMovement(playerCurrentWaypoint->pathDownWaypoints);
 	}
+
+	RotatePlayerTowardsDirection(MovementInput, GetWorld()->GetDeltaSeconds());
+	RotateCameraTowardsForward(GetWorld()->GetDeltaSeconds());
 }
+
+void AAPlayerPawn::RotatePlayerTowardsDirection(const FVector2D& MovementInput, float DeltaTime)
+{
+
+}
+
+void AAPlayerPawn::RotateCameraTowardsForward(float DeltaTime)
+{
+
+}
+
 
 void AAPlayerPawn::OnOverlapBegin(UPrimitiveComponent* OverlapComponent,
 	AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex,

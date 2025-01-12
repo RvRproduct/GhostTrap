@@ -13,6 +13,7 @@ void EmptyLinkFunctionForGeneratedCodeAPlayerPawn() {}
 // Begin Cross Module References
 ENGINE_API UClass* Z_Construct_UClass_AActor_NoRegister();
 ENGINE_API UClass* Z_Construct_UClass_UBoxComponent_NoRegister();
+ENGINE_API UClass* Z_Construct_UClass_UCameraComponent_NoRegister();
 ENGINE_API UClass* Z_Construct_UClass_UPrimitiveComponent_NoRegister();
 ENGINE_API UScriptStruct* Z_Construct_UScriptStruct_FHitResult();
 ENHANCEDINPUT_API UClass* Z_Construct_UClass_UInputAction_NoRegister();
@@ -127,8 +128,18 @@ struct Z_Construct_UClass_AAPlayerPawn_Statics
 		{ "IncludePath", "APlayerPawn.h" },
 		{ "ModuleRelativePath", "APlayerPawn.h" },
 	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_Camera_MetaData[] = {
+		{ "AllowPrivateAccess", "true" },
+		{ "Category", "APlayerPawn" },
+		{ "EditInline", "true" },
+		{ "ModuleRelativePath", "APlayerPawn.h" },
+	};
 	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_playerCurrentWaypoint_MetaData[] = {
 		{ "Category", "Current Waypoint" },
+		{ "ModuleRelativePath", "APlayerPawn.h" },
+	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_playerNextWaypoint_MetaData[] = {
+		{ "Category", "Next Waypoint" },
 		{ "ModuleRelativePath", "APlayerPawn.h" },
 	};
 	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_InputMapping_MetaData[] = {
@@ -139,6 +150,10 @@ struct Z_Construct_UClass_AAPlayerPawn_Statics
 		{ "Category", "Input" },
 		{ "ModuleRelativePath", "APlayerPawn.h" },
 	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_cameraRotationSpeed_MetaData[] = {
+		{ "Category", "Camera" },
+		{ "ModuleRelativePath", "APlayerPawn.h" },
+	};
 	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_CollisionComponentReference_MetaData[] = {
 		{ "AllowPrivateAccess", "true" },
 		{ "Category", "Collision" },
@@ -146,9 +161,12 @@ struct Z_Construct_UClass_AAPlayerPawn_Statics
 		{ "ModuleRelativePath", "APlayerPawn.h" },
 	};
 #endif // WITH_METADATA
+	static const UECodeGen_Private::FObjectPropertyParams NewProp_Camera;
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_playerCurrentWaypoint;
+	static const UECodeGen_Private::FObjectPropertyParams NewProp_playerNextWaypoint;
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_InputMapping;
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_MoveAction;
+	static const UECodeGen_Private::FFloatPropertyParams NewProp_cameraRotationSpeed;
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_CollisionComponentReference;
 	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
 	static UObject* (*const DependentSingletons[])();
@@ -161,14 +179,20 @@ struct Z_Construct_UClass_AAPlayerPawn_Statics
 	};
 	static const UECodeGen_Private::FClassParams ClassParams;
 };
+const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AAPlayerPawn_Statics::NewProp_Camera = { "Camera", nullptr, (EPropertyFlags)0x00400000000a0009, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AAPlayerPawn, Camera), Z_Construct_UClass_UCameraComponent_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_Camera_MetaData), NewProp_Camera_MetaData) };
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AAPlayerPawn_Statics::NewProp_playerCurrentWaypoint = { "playerCurrentWaypoint", nullptr, (EPropertyFlags)0x0010000000000001, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AAPlayerPawn, playerCurrentWaypoint), Z_Construct_UClass_AAWaypointActor_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_playerCurrentWaypoint_MetaData), NewProp_playerCurrentWaypoint_MetaData) };
+const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AAPlayerPawn_Statics::NewProp_playerNextWaypoint = { "playerNextWaypoint", nullptr, (EPropertyFlags)0x0010000000020001, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AAPlayerPawn, playerNextWaypoint), Z_Construct_UClass_AAWaypointActor_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_playerNextWaypoint_MetaData), NewProp_playerNextWaypoint_MetaData) };
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AAPlayerPawn_Statics::NewProp_InputMapping = { "InputMapping", nullptr, (EPropertyFlags)0x0010000000000015, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AAPlayerPawn, InputMapping), Z_Construct_UClass_UInputMappingContext_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_InputMapping_MetaData), NewProp_InputMapping_MetaData) };
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AAPlayerPawn_Statics::NewProp_MoveAction = { "MoveAction", nullptr, (EPropertyFlags)0x0114000000000015, UECodeGen_Private::EPropertyGenFlags::Object | UECodeGen_Private::EPropertyGenFlags::ObjectPtr, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AAPlayerPawn, MoveAction), Z_Construct_UClass_UInputAction_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_MoveAction_MetaData), NewProp_MoveAction_MetaData) };
+const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_AAPlayerPawn_Statics::NewProp_cameraRotationSpeed = { "cameraRotationSpeed", nullptr, (EPropertyFlags)0x0010000000000015, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AAPlayerPawn, cameraRotationSpeed), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_cameraRotationSpeed_MetaData), NewProp_cameraRotationSpeed_MetaData) };
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AAPlayerPawn_Statics::NewProp_CollisionComponentReference = { "CollisionComponentReference", nullptr, (EPropertyFlags)0x00200800000a001d, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AAPlayerPawn, CollisionComponentReference), Z_Construct_UClass_UBoxComponent_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_CollisionComponentReference_MetaData), NewProp_CollisionComponentReference_MetaData) };
 const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_AAPlayerPawn_Statics::PropPointers[] = {
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AAPlayerPawn_Statics::NewProp_Camera,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AAPlayerPawn_Statics::NewProp_playerCurrentWaypoint,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AAPlayerPawn_Statics::NewProp_playerNextWaypoint,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AAPlayerPawn_Statics::NewProp_InputMapping,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AAPlayerPawn_Statics::NewProp_MoveAction,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AAPlayerPawn_Statics::NewProp_cameraRotationSpeed,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AAPlayerPawn_Statics::NewProp_CollisionComponentReference,
 };
 static_assert(UE_ARRAY_COUNT(Z_Construct_UClass_AAPlayerPawn_Statics::PropPointers) < 2048);
@@ -212,10 +236,10 @@ AAPlayerPawn::~AAPlayerPawn() {}
 struct Z_CompiledInDeferFile_FID_GhostTrap_Source_GhostTrap_APlayerPawn_h_Statics
 {
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_AAPlayerPawn, AAPlayerPawn::StaticClass, TEXT("AAPlayerPawn"), &Z_Registration_Info_UClass_AAPlayerPawn, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AAPlayerPawn), 3501612749U) },
+		{ Z_Construct_UClass_AAPlayerPawn, AAPlayerPawn::StaticClass, TEXT("AAPlayerPawn"), &Z_Registration_Info_UClass_AAPlayerPawn, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AAPlayerPawn), 3217088568U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_GhostTrap_Source_GhostTrap_APlayerPawn_h_2884659334(TEXT("/Script/GhostTrap"),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_GhostTrap_Source_GhostTrap_APlayerPawn_h_395863033(TEXT("/Script/GhostTrap"),
 	Z_CompiledInDeferFile_FID_GhostTrap_Source_GhostTrap_APlayerPawn_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_GhostTrap_Source_GhostTrap_APlayerPawn_h_Statics::ClassInfo),
 	nullptr, 0,
 	nullptr, 0);

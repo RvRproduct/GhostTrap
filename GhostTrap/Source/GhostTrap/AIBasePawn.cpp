@@ -32,22 +32,22 @@ void AAIBasePawn::SetupPlayerInputComponent(UInputComponent* PlayerInputComponen
 
 }
 
-void AAIBasePawn::Seek(FVector targetPosition, float DeltaTime)
+void AAIBasePawn::Seek(FVector waypointPosition, float DeltaTime)
 {
-	FVector targetVelocity = (targetPosition - GetActorLocation()).GetSafeNormal() * maxSpeed;
+	float distanceToWaypoint = FVector::Dist(GetActorLocation(), waypointPosition);
+	float ArrivalRadius = 5.0f;
 
-	FVector steeringForce = targetVelocity - currentVelocity;
-
-	if (steeringForce.Size() > maxForce)
+	if (distanceToWaypoint <= ArrivalRadius)
 	{
-		steeringForce = steeringForce.GetClampedToMaxSize(maxForce);
+		currentVelocity = FVector::ZeroVector;
+
+		SetActorLocation(waypointPosition);
+		return;
 	}
 
-	currentVelocity += steeringForce * DeltaTime;
+	FVector direction = (waypointPosition - GetActorLocation()).GetSafeNormal();
+	currentVelocity = direction * maxSpeed;
 
-	if (currentVelocity.Size() > maxSpeed)
-	{
-		currentVelocity + currentVelocity.GetClampedToMaxSize(maxSpeed);
-	}
+	SetActorLocation(GetActorLocation() + currentVelocity * DeltaTime);
 }
 

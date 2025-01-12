@@ -18,6 +18,16 @@ class GHOSTTRAP_API AAPlayerPawn : public AAIBasePawn
 {
 	GENERATED_BODY()
 
+	UPROPERTY(VisibleAnywhere, meta = (AllowPrivateAccess = "true"))
+	class UCameraComponent* Camera;
+
+private:
+	void RotatePlayerTowardsDirection(const FVector2D& MovementInput, float DeltaTime);
+	void RotateCameraTowardsForward(float DeltaTime);
+
+	FRotator playerRotation;
+	FRotator cameraRotation;
+
 public:
 	// Sets default values for this pawn's properties
 	AAPlayerPawn();
@@ -25,6 +35,7 @@ public:
 	UPROPERTY(EditAnywhere, Category = "Current Waypoint")
 	AAWaypointActor* playerCurrentWaypoint;
 
+	UPROPERTY(VisibleAnywhere, Category = "Next Waypoint")
 	AAWaypointActor* playerNextWaypoint;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Input Mapping")
@@ -32,6 +43,9 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Input")
 	TObjectPtr<UInputAction> MoveAction;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Camera")
+	float cameraRotationSpeed = 5.0f;
 
 
 protected:

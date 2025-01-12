@@ -56,13 +56,13 @@ void AAAutomaticWaypointsActor::CheckValidWaypointPath(AAWaypointActor* currentW
 		{
 			if (currentWaypointPosition.X < otherWaypointPosition.X)
 			{
-				// right
-				CheckIfWaypointPathIsBlocked(GetWorld(), WaypointDirection::Right, currentWaypoint, otherWaypoint, currentWaypointPosition, otherWaypointPosition, "Wall");
+				// left
+				CheckIfWaypointPathIsBlocked(GetWorld(), WaypointDirection::Left, currentWaypoint, otherWaypoint, currentWaypointPosition, otherWaypointPosition, "Wall");
 			}
 			else if (currentWaypointPosition.X > otherWaypointPosition.X)
 			{
-				// left
-				CheckIfWaypointPathIsBlocked(GetWorld(), WaypointDirection::Left, currentWaypoint, otherWaypoint, currentWaypointPosition, otherWaypointPosition, "Wall");
+				// right
+				CheckIfWaypointPathIsBlocked(GetWorld(), WaypointDirection::Right, currentWaypoint, otherWaypoint, currentWaypointPosition, otherWaypointPosition, "Wall");
 			}
 		}
 	}
@@ -73,7 +73,8 @@ void AAAutomaticWaypointsActor::CheckIfWaypointPathIsBlocked(UWorld* World, Wayp
 {
 	// Setting up our RayCast so that we can check from walls/obstruction between the waypoints
 	FVector Start = currentWaypointPosition;
-	FVector End = currentWaypointPosition - otherWaypointPosition;
+	FVector Direction = otherWaypointPosition - currentWaypointPosition;
+	FVector End = currentWaypointPosition + Direction;
 
 	FCollisionQueryParams CollisionParams;
 	CollisionParams.bTraceComplex = false;
@@ -97,6 +98,15 @@ void AAAutomaticWaypointsActor::CheckIfWaypointPathIsBlocked(UWorld* World, Wayp
 		if (HitActor && HitActor->ActorHasTag(TagToCheck))
 		{
 			// We will not add this to the waypoint as a valid path
+			if (GEngine)
+			{
+				GEngine->AddOnScreenDebugMessage(
+					-1,
+					5.f,
+					FColor::Yellow,
+					FString::Printf(TEXT("Made a Collision with Wall"))
+				);
+			}
 		}
 		else
 		{

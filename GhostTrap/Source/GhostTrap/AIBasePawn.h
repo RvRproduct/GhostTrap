@@ -33,8 +33,6 @@ protected:
 	UPROPERTY(EditAnywhere, Category = "Movement")
 	float maxSpeed = 600.0f;
 
-	UPROPERTY(EditAnywhere, Category = "Movement")
-	float maxForce = 300.0f;
 
 	UPROPERTY(VisibleAnywhere, Category = "Movement")
 	FVector currentVelocity = FVector::ZeroVector;
@@ -46,5 +44,5 @@ public:
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
-	virtual void Seek(FVector targetPosition, float DeltaTime);
+	virtual void Seek(FVector waypointPosition, float DeltaTime);
 };
