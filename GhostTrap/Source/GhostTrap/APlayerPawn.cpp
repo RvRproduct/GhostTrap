@@ -154,32 +154,50 @@ void AAPlayerPawn::Move(const FInputActionValue& Value)
 	
 	if (MovementInput.X < 0) // Left
 	{
-		ApplyWaypointMovement(playerCurrentWaypoint->pathLeftWaypoints);
-
-		// Correct the Rotation lol
-		MovementInput.X *= -1;
-
-
+		RotatePlayerTowardsDirection(MovementInput, GetWorld()->GetDeltaSeconds());
 	}
 	else if (MovementInput.X > 0) // Right
 	{
-		ApplyWaypointMovement(playerCurrentWaypoint->pathRightWaypoints);
-
-		// Correct the Rotation lol
-		MovementInput.X *= -1;
+		RotatePlayerTowardsDirection(MovementInput, GetWorld()->GetDeltaSeconds());
 	}
-
 	
-	if (MovementInput.Y > 0) // Up
+	if (MovementInput.Y > 0) // Up Moves whereever facing
 	{
-		ApplyWaypointMovement(playerCurrentWaypoint->pathUpWaypoints);
-	}
-	else if (MovementInput.Y < 0) // Down
-	{
-		ApplyWaypointMovement(playerCurrentWaypoint->pathDownWaypoints);
-	}
+		
 
-	RotatePlayerTowardsDirection(MovementInput, GetWorld()->GetDeltaSeconds());
+		
+
+		if (GEngine)
+		{
+			GEngine->AddOnScreenDebugMessage(
+				-1,
+				5.f,
+				FColor::Yellow,
+				FString::Printf(TEXT("This is the Rotation: %s"), *GetActorRotation().ToString())
+			);
+		}
+
+		int32 yaw = FMath::RoundToInt(GetActorRotation().Yaw);
+
+		const float Tolerance = 5.0f;
+
+		if (FMath::Abs(yaw) <= Tolerance)
+		{
+			ApplyWaypointMovement(playerCurrentWaypoint->pathLeftWaypoints);
+		}
+		else if (FMath::Abs(yaw - 90) <= Tolerance)
+		{
+			ApplyWaypointMovement(playerCurrentWaypoint->pathUpWaypoints);
+		}
+		else if (FMath::Abs(yaw + 90) <= Tolerance)
+		{
+			ApplyWaypointMovement(playerCurrentWaypoint->pathDownWaypoints);
+		}
+		else if (FMath::Abs(FMath::Abs(yaw) - 180) <= Tolerance)
+		{
+			ApplyWaypointMovement(playerCurrentWaypoint->pathRightWaypoints);
+		}
+	}
 }
 
 void AAPlayerPawn::Jump(const FInputActionValue& Value)
@@ -229,10 +247,19 @@ void AAPlayerPawn::RotatePlayerTowardsDirection(const FVector2D& MovementInput, 
 		return;
 	}
 
-	FVector direction = FVector(MovementInput.X, MovementInput.Y, 0.0f).GetSafeNormal2D();
+	FRotator newRotation = FRotator(0.0f, 0.0f, 0.0f);
+
+	if (MovementInput.X < 0)  // Left (rotate counterclockwise 90 degrees)
+	{
+		newRotation = FRotator(0.0f, -90.0f, 0.0f);  // Rotate 90 degrees to the left
+	}
+	else if (MovementInput.X > 0)  // Right (rotate clockwise 90 degrees)
+	{
+		newRotation = FRotator(0.0f, 90.0f, 0.0f);  // Rotate 90 degrees to the right
+	}
 	
 
-	playerRotation = direction.Rotation();
+	playerRotation += newRotation;
 }
 
 void AAPlayerPawn::UpdateCameraRotation(float DeltaTime)

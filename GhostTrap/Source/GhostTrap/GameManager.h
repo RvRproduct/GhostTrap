@@ -16,7 +16,7 @@ public:
 	// Sets default values for this actor's properties
 	AGameManager();
 
-	UPROPERTY(VisibleAnywhere, Category = "Number of Key Collectibles")
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Number of Key Collectibles")
 	int32 totalKeyCollectibles;
 
 	bool setupKeyCollectibles = false;

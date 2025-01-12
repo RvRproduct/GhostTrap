@@ -26,12 +26,13 @@ private:
 	void UpdatePlayerRotation(float DeltaTime);
 	void UpdateCameraRotation(float DeltaTime);
 
+	FVector2D lastDirection = FVector2D(0.0f, 1.0f);
 	FRotator playerRotation;
 	FRotator cameraRotation;
 
 	bool isJumping = false;
-	float jumpHeight = 200.0f;
-	float jumpDuration = 0.5f;
+	float jumpHeight = 250.0f;
+	float jumpDuration = 0.8f;
 	float jumpStartZ = 0.0f;  
 	float jumpProgress = 0.0f;
 

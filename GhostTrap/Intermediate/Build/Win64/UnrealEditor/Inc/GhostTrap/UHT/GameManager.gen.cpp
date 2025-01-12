@@ -47,7 +47,7 @@ struct Z_Construct_UClass_AGameManager_Statics
 	};
 	static const UECodeGen_Private::FClassParams ClassParams;
 };
-const UECodeGen_Private::FIntPropertyParams Z_Construct_UClass_AGameManager_Statics::NewProp_totalKeyCollectibles = { "totalKeyCollectibles", nullptr, (EPropertyFlags)0x0010000000020001, UECodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AGameManager, totalKeyCollectibles), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_totalKeyCollectibles_MetaData), NewProp_totalKeyCollectibles_MetaData) };
+const UECodeGen_Private::FIntPropertyParams Z_Construct_UClass_AGameManager_Statics::NewProp_totalKeyCollectibles = { "totalKeyCollectibles", nullptr, (EPropertyFlags)0x0010000000020015, UECodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AGameManager, totalKeyCollectibles), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_totalKeyCollectibles_MetaData), NewProp_totalKeyCollectibles_MetaData) };
 const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_AGameManager_Statics::PropPointers[] = {
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AGameManager_Statics::NewProp_totalKeyCollectibles,
 };
@@ -92,10 +92,10 @@ AGameManager::~AGameManager() {}
 struct Z_CompiledInDeferFile_FID_GhostTrap_Source_GhostTrap_GameManager_h_Statics
 {
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_AGameManager, AGameManager::StaticClass, TEXT("AGameManager"), &Z_Registration_Info_UClass_AGameManager, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AGameManager), 87898716U) },
+		{ Z_Construct_UClass_AGameManager, AGameManager::StaticClass, TEXT("AGameManager"), &Z_Registration_Info_UClass_AGameManager, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AGameManager), 2495092335U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_GhostTrap_Source_GhostTrap_GameManager_h_177929830(TEXT("/Script/GhostTrap"),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_GhostTrap_Source_GhostTrap_GameManager_h_95122173(TEXT("/Script/GhostTrap"),
 	Z_CompiledInDeferFile_FID_GhostTrap_Source_GhostTrap_GameManager_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_GhostTrap_Source_GhostTrap_GameManager_h_Statics::ClassInfo),
 	nullptr, 0,
 	nullptr, 0);
