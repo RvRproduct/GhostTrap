@@ -78,5 +78,29 @@
     <ClCompile Include="..\..\Source\GhostTrap\GhostTrap.h">
       <Filter>Source\GhostTrap</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Source\GhostTrap\HidingSpotActor.cpp">
+      <Filter>Source\GhostTrap</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\GhostTrap\HidingSpotActor.h">
+      <Filter>Source\GhostTrap</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\GhostTrap\KeyCollectible.cpp">
+      <Filter>Source\GhostTrap</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\GhostTrap\KeyCollectible.h">
+      <Filter>Source\GhostTrap</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\GhostTrap\PowerUp.cpp">
+      <Filter>Source\GhostTrap</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\GhostTrap\PowerUp.h">
+      <Filter>Source\GhostTrap</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\GhostTrap\SpikeTrap.cpp">
+      <Filter>Source\GhostTrap</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\GhostTrap\SpikeTrap.h">
+      <Filter>Source\GhostTrap</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
