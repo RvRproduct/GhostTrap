@@ -29,6 +29,14 @@ void AAAutomaticWaypointsActor::SetUpWaypoints()
 			}
 		}
 	}
+
+	for (AAWaypointActor* currentWaypoint : waypoints)
+	{
+		AddClosestPathWaypointToWaypoint(WaypointDirection::Left, currentWaypoint, currentWaypoint->pathLeftWaypoints);
+		AddClosestPathWaypointToWaypoint(WaypointDirection::Right, currentWaypoint, currentWaypoint->pathRightWaypoints);
+		AddClosestPathWaypointToWaypoint(WaypointDirection::Up, currentWaypoint, currentWaypoint->pathUpWaypoints);
+		AddClosestPathWaypointToWaypoint(WaypointDirection::Down, currentWaypoint, currentWaypoint->pathDownWaypoints);
+	}
 }
 
 // Check whether or not waypoint to waypoint path lines up and is valid
@@ -137,5 +145,52 @@ void AAAutomaticWaypointsActor::AddPathToWaypoint(WaypointDirection waypointDire
 	else if (waypointDirection == WaypointDirection::Down)
 	{
 		currentWaypoint->pathDownWaypoints.Add(otherWaypoint);
+	}
+}
+
+void AAAutomaticWaypointsActor::AddClosestPathWaypointToWaypoint(WaypointDirection waypointDirection, AAWaypointActor* currentWaypoint, TArray<AAWaypointActor*> pathDirectionWaypoints)
+{
+	float distanceBetweenOldWaypoints = INFINITY;
+	AAWaypointActor* targetWaypoint = nullptr;
+	FVector targetWaypointPosition = FVector::ZeroVector;
+
+
+	for (AAWaypointActor* directionWaypoint : pathDirectionWaypoints)
+	{
+		/*if (targetWaypointPosition == FVector::ZeroVector)
+		{
+			targetWaypointPosition = directionWaypoint->GetActorLocation();
+			targetWaypoint = directionWaypoint;
+
+			return;
+		}*/
+
+		float distanceBetweenNewWaypoints = FVector::Dist(currentWaypoint->GetActorLocation(), directionWaypoint->GetActorLocation());
+
+		if (distanceBetweenOldWaypoints > distanceBetweenNewWaypoints)
+		{
+			targetWaypointPosition = directionWaypoint->GetActorLocation();
+
+			distanceBetweenOldWaypoints = distanceBetweenNewWaypoints;
+
+			targetWaypoint = directionWaypoint;
+		}
+	}
+
+	if (waypointDirection == WaypointDirection::Left)
+	{
+		currentWaypoint->pathClosestLeftWaypoint = targetWaypoint;
+	}
+	else if (waypointDirection == WaypointDirection::Right)
+	{
+		currentWaypoint->pathClosestRightWaypoint = targetWaypoint;
+	}
+	else if (waypointDirection == WaypointDirection::Up)
+	{
+		currentWaypoint->pathClosestUpWaypoint = targetWaypoint;
+	}
+	else if (waypointDirection == WaypointDirection::Down)
+	{
+		currentWaypoint->pathClosestDownWaypoint = targetWaypoint;
 	}
 }

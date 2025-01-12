@@ -38,4 +38,5 @@ public:
 	void CheckValidWaypointPath(AAWaypointActor* currentWaypoint, AAWaypointActor* otherWaypoint);
 	void CheckIfWaypointPathIsBlocked(UWorld* World, WaypointDirection waypointDirection, AAWaypointActor* currentWaypoint, AAWaypointActor* otherWaypoint, FVector currentWaypointPosition, FVector otherWaypointPosition, FName TagToCheck);
 	void AddPathToWaypoint(WaypointDirection waypointDirection, AAWaypointActor* currentWaypoint, AAWaypointActor* otherWaypoint);
+	void AddClosestPathWaypointToWaypoint(WaypointDirection waypointDirection, AAWaypointActor* currentWaypoint, TArray<AAWaypointActor*> pathDirectionWaypoints);
 };

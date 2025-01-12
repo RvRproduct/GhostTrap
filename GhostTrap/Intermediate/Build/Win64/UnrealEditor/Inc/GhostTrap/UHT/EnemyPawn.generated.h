@@ -14,7 +14,7 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #endif
 #define GHOSTTRAP_EnemyPawn_generated_h
 
-#define FID_GhostTrap_Source_GhostTrap_EnemyPawn_h_23_INCLASS_NO_PURE_DECLS \
+#define FID_GhostTrap_Source_GhostTrap_EnemyPawn_h_27_INCLASS_NO_PURE_DECLS \
 private: \
 	static void StaticRegisterNativesAEnemyPawn(); \
 	friend struct Z_Construct_UClass_AEnemyPawn_Statics; \
@@ -23,7 +23,7 @@ public: \
 	DECLARE_SERIALIZER(AEnemyPawn)
 
 
-#define FID_GhostTrap_Source_GhostTrap_EnemyPawn_h_23_ENHANCED_CONSTRUCTORS \
+#define FID_GhostTrap_Source_GhostTrap_EnemyPawn_h_27_ENHANCED_CONSTRUCTORS \
 private: \
 	/** Private move- and copy-constructors, should never be used */ \
 	AEnemyPawn(AEnemyPawn&&); \
@@ -35,12 +35,12 @@ public: \
 	NO_API virtual ~AEnemyPawn();
 
 
-#define FID_GhostTrap_Source_GhostTrap_EnemyPawn_h_20_PROLOG
-#define FID_GhostTrap_Source_GhostTrap_EnemyPawn_h_23_GENERATED_BODY \
+#define FID_GhostTrap_Source_GhostTrap_EnemyPawn_h_24_PROLOG
+#define FID_GhostTrap_Source_GhostTrap_EnemyPawn_h_27_GENERATED_BODY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
-	FID_GhostTrap_Source_GhostTrap_EnemyPawn_h_23_INCLASS_NO_PURE_DECLS \
-	FID_GhostTrap_Source_GhostTrap_EnemyPawn_h_23_ENHANCED_CONSTRUCTORS \
+	FID_GhostTrap_Source_GhostTrap_EnemyPawn_h_27_INCLASS_NO_PURE_DECLS \
+	FID_GhostTrap_Source_GhostTrap_EnemyPawn_h_27_ENHANCED_CONSTRUCTORS \
 private: \
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 
