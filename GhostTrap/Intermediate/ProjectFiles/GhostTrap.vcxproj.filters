@@ -57,6 +57,12 @@
     <ClCompile Include="..\..\Source\GhostTrap\AWaypointActor.h">
       <Filter>Source\GhostTrap</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Source\GhostTrap\EnemyPawn.cpp">
+      <Filter>Source\GhostTrap</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\GhostTrap\EnemyPawn.h">
+      <Filter>Source\GhostTrap</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\Source\GhostTrap\GameManager.cpp">
       <Filter>Source\GhostTrap</Filter>
     </ClCompile>
