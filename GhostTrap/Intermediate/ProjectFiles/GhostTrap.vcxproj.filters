@@ -42,9 +42,6 @@
     <ClCompile Include="..\..\Source\GhostTrap\AIBasePawn.h">
       <Filter>Source\GhostTrap</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Source\GhostTrap\AIMovementStates.cpp">
-      <Filter>Source\GhostTrap</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\Source\GhostTrap\APlayerPawn.cpp">
       <Filter>Source\GhostTrap</Filter>
     </ClCompile>
@@ -55,6 +52,12 @@
       <Filter>Source\GhostTrap</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\GhostTrap\AWaypointActor.h">
+      <Filter>Source\GhostTrap</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\GhostTrap\CollectCounterWidget.cpp">
+      <Filter>Source\GhostTrap</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\GhostTrap\CollectCounterWidget.h">
       <Filter>Source\GhostTrap</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\GhostTrap\EnemyPawn.cpp">

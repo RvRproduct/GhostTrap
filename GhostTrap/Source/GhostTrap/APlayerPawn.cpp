@@ -70,6 +70,7 @@ void AAPlayerPawn::Tick(float DeltaTime)
 	Super::Tick(DeltaTime);
 
 	Seek(playerNextWaypoint->GetActorLocation(), DeltaTime);
+	ApplyJump(DeltaTime);
 	UpdatePlayerRotation(DeltaTime);
 	UpdateCameraRotation(DeltaTime);
 
@@ -92,6 +93,7 @@ void AAPlayerPawn::SetupPlayerInputComponent(UInputComponent* PlayerInputCompone
 	{
 		// Binding Each Movement Direction
 		EnhancedInputComponent->BindAction(MoveAction, ETriggerEvent::Triggered, this, &AAPlayerPawn::Move);
+		EnhancedInputComponent->BindAction(JumpAction, ETriggerEvent::Triggered, this, &AAPlayerPawn::Jump);
 	}
 
 }
@@ -178,6 +180,46 @@ void AAPlayerPawn::Move(const FInputActionValue& Value)
 	}
 
 	RotatePlayerTowardsDirection(MovementInput, GetWorld()->GetDeltaSeconds());
+}
+
+void AAPlayerPawn::Jump(const FInputActionValue& Value)
+{
+	if (Value.Get<bool>())
+	{
+		if (!isJumping)
+		{
+			isJumping = true;
+			jumpStartZ = GetActorLocation().Z;
+			jumpProgress = 0.0f;
+		}
+	}
+}
+
+void AAPlayerPawn::ApplyJump(float DeltaTime)
+{
+	if (isJumping)
+	{
+		jumpProgress += DeltaTime / jumpDuration;
+
+		FVector currentPosition = GetActorLocation();
+
+		if (jumpProgress <= 0.5f)
+		{
+			currentPosition.Z = FMath::Lerp(jumpStartZ, jumpStartZ + jumpHeight, jumpProgress * 2);
+		}
+		else
+		{
+			currentPosition.Z = FMath::Lerp(jumpStartZ + jumpHeight, jumpStartZ, (jumpProgress - 0.5f) * 2);
+		}
+
+		SetActorLocation(currentPosition);
+
+		if (jumpProgress >= 1.0f)
+		{
+			isJumping = false;
+			jumpProgress = 0.0f;
+		}
+	}
 }
 
 void AAPlayerPawn::RotatePlayerTowardsDirection(const FVector2D& MovementInput, float DeltaTime)

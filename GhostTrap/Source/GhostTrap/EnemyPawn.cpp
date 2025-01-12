@@ -144,7 +144,7 @@ void AEnemyPawn::BeginSearchWaypointPath()
 
 	startPathWaypoint.Key = currentWaypoint;
 
-	if (enemyType == EnemyTypes::TargetPlayer)
+	if (enemyType == EnemyTypes::TargetPlayer && !playerPawn->isHidden)
 	{
 		goalPathWaypoint.Key = playerPawn->playerNextWaypoint;
 
@@ -155,6 +155,10 @@ void AEnemyPawn::BeginSearchWaypointPath()
 		}
 	}
 	else if (enemyType == EnemyTypes::Random)
+	{
+		goalPathWaypoint.Key = GetRandomTargetWaypoint();
+	}
+	else
 	{
 		goalPathWaypoint.Key = GetRandomTargetWaypoint();
 	}

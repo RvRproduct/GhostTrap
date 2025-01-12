@@ -1,6 +1,8 @@
 // Created By Roberto Reynoso - RvRproduct
-
 #include "GameManager.h"
+
+#include "Kismet/GameplayStatics.h"
+#include "KeyCollectible.h"
 #include "EngineUtils.h"
 
 
@@ -39,5 +41,27 @@ void AGameManager::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
+	YouChoom();
+}
+
+void AGameManager::SetupKeyCollectibleCount()
+{
+	TArray<AActor*> KeyCollectibles;
+	UWorld* World = GetWorld();
+
+	UGameplayStatics::GetAllActorsOfClass(World, AKeyCollectible::StaticClass(), KeyCollectibles);
+
+	totalKeyCollectibles = KeyCollectibles.Num();
+
+	setupKeyCollectibles = true;
+}
+
+void AGameManager::YouChoom()
+{
+	if (totalKeyCollectibles <= 0 && setupKeyCollectibles)
+	{
+		UGameplayStatics::OpenLevel(GetWorld(), FName(TEXT("YouChoomLevel")));
+	}
+	
 }
 

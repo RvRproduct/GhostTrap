@@ -29,9 +29,19 @@ private:
 	FRotator playerRotation;
 	FRotator cameraRotation;
 
+	bool isJumping = false;
+	float jumpHeight = 200.0f;
+	float jumpDuration = 0.5f;
+	float jumpStartZ = 0.0f;  
+	float jumpProgress = 0.0f;
+
 public:
 	// Sets default values for this pawn's properties
 	AAPlayerPawn();
+
+	bool isHidden = false;
+	bool hasPowerUp = false;
+	bool isHitSlowDown = false;
 
 	UPROPERTY(EditAnywhere, Category = "Current Waypoint")
 	AAWaypointActor* playerCurrentWaypoint;
@@ -44,6 +54,9 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Input")
 	TObjectPtr<UInputAction> MoveAction;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Input")
+	TObjectPtr<UInputAction> JumpAction;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Camera Speed")
 	float cameraRotationSpeed = 5.0f;
@@ -68,7 +81,9 @@ public:
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
 	void Move(const FInputActionValue& Value);
+	void Jump(const FInputActionValue& Value);
 	void ApplyWaypointMovement(TArray<AAWaypointActor*> pathDirectionWaypoints);
+	void ApplyJump(float DeltaTime);
 
 	UFUNCTION()
 	void OnOverlapBegin(UPrimitiveComponent* OverlapComponent,
