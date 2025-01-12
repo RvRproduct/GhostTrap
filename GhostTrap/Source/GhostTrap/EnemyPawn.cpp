@@ -15,6 +15,38 @@ AEnemyPawn::AEnemyPawn()
 void AEnemyPawn::BeginPlay()
 {
 	Super::BeginPlay();
+
+	lastPathWaypoint.Key = currentWaypoint;
+
+	if (currentWaypoint != nullptr)
+	{
+
+		if (nextWaypoint == nullptr)
+		{
+			nextWaypoint = currentWaypoint;
+		}
+
+		this->SetActorLocation(currentWaypoint->GetActorLocation());
+	}
+
+	if (!CollisionComponentReference)
+	{
+
+		CollisionComponentReference = FindComponentByClass<UBoxComponent>();
+
+		if (CollisionComponentReference)
+		{
+			UE_LOG(LogTemp, Display, TEXT("The Collision Component Found: %s"), *CollisionComponentReference->GetName());
+			CollisionComponentReference->SetCollisionEnabled(ECollisionEnabled::QueryAndPhysics);
+			CollisionComponentReference->SetCollisionResponseToAllChannels(ECollisionResponse::ECR_Block);
+			CollisionComponentReference->OnComponentBeginOverlap.AddDynamic(this, &AEnemyPawn::OnOverlapBegin);
+		}
+		else
+		{
+			UE_LOG(LogTemp, Display, TEXT("The Collision Component Not Found"));
+		}
+
+	}
 	
 }
 
@@ -22,6 +54,37 @@ void AEnemyPawn::BeginPlay()
 void AEnemyPawn::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
+
+	if (hasReachedDestination)
+	{
+		if (!hasStartedSearch)
+		{
+			hasStartedSearch = true;
+			BeginSearchWaypointPath();
+		}
+		
+		if (!waypointPathDone)
+		{
+			SearchWaypointPath(lastPathWaypoint);
+		}
+
+		if (waypointPathDone)
+		{
+			SetWaypointPath();
+			hasReachedDestination = false;
+		}
+	}
+	else
+	{
+		Seek(nextWaypoint->GetActorLocation(), DeltaTime);
+
+		if (currentWaypoint == goalPathWaypoint.Key)
+		{
+			hasStartedSearch = false;
+			hasReachedDestination = true;
+
+		}
+	}
 
 }
 
@@ -37,11 +100,22 @@ void AEnemyPawn::ClearWaypointPath()
 	setPathToWaypointTarget.Empty();
 
 	startPathWaypoint.Key = nullptr;
+
+	if (!startPathWaypoint.Value)
+	{
+		startPathWaypoint.Value = new WaypointPathFinding();
+	}
+
 	startPathWaypoint.Value->F = 0.0f;
 	startPathWaypoint.Value->G = 0.0f;
 	startPathWaypoint.Value->H = 0.0f;
 	startPathWaypoint.Value->parentWaypointActor = nullptr;
 	startPathWaypoint.Value->parentWaypoint = nullptr;
+
+	if (!goalPathWaypoint.Value)
+	{
+		goalPathWaypoint.Value = new WaypointPathFinding();
+	}
 
 	goalPathWaypoint.Key = nullptr;
 	goalPathWaypoint.Value->F = 0.0f;
@@ -49,6 +123,11 @@ void AEnemyPawn::ClearWaypointPath()
 	goalPathWaypoint.Value->H = 0.0f;
 	goalPathWaypoint.Value->parentWaypointActor = nullptr;
 	goalPathWaypoint.Value->parentWaypoint = nullptr;
+
+	if (!lastPathWaypoint.Value)
+	{
+		lastPathWaypoint.Value = new WaypointPathFinding();
+	}
 
 	lastPathWaypoint.Key = nullptr;
 	lastPathWaypoint.Value->F = 0.0f;
@@ -64,7 +143,22 @@ void AEnemyPawn::BeginSearchWaypointPath()
 	ClearWaypointPath();
 
 	startPathWaypoint.Key = currentWaypoint;
-	goalPathWaypoint.Key = playerPawn->playerNextWaypoint;
+
+	if (enemyType == EnemyTypes::TargetPlayer)
+	{
+		goalPathWaypoint.Key = playerPawn->playerNextWaypoint;
+
+		if (currentWaypoint == goalPathWaypoint.Key)
+		{
+			waypointPathDone = true;
+			return;
+		}
+	}
+	else if (enemyType == EnemyTypes::Random)
+	{
+		goalPathWaypoint.Key = GetRandomTargetWaypoint();
+	}
+	
 
 	openPathToWaypointTarget.Empty();
 	closedPathToWaypointTarget.Empty();
@@ -119,15 +213,15 @@ void AEnemyPawn::SearchWaypointPath(TPair<AAWaypointActor*, WaypointPathFinding*
 	}
 
 	// By F first
-	openPathToWaypointTarget.Sort([](const TPair<AAWaypointActor*, WaypointPathFinding> waypointPathA, const TPair<AAWaypointActor*, WaypointPathFinding> waypointPathB)
+	openPathToWaypointTarget.Sort([](const TPair<AAWaypointActor*, WaypointPathFinding*> waypointPathA, const TPair<AAWaypointActor*, WaypointPathFinding*> waypointPathB)
 		{
-			return waypointPathA.Value.F < waypointPathB.Value.F;
+			return waypointPathA.Value->F < waypointPathB.Value->F;
 		});
 
 	// Then H Second
-	openPathToWaypointTarget.Sort([](const TPair<AAWaypointActor*, WaypointPathFinding> waypointPathA, const TPair<AAWaypointActor*, WaypointPathFinding> waypointPathB)
+	openPathToWaypointTarget.Sort([](const TPair<AAWaypointActor*, WaypointPathFinding*> waypointPathA, const TPair<AAWaypointActor*, WaypointPathFinding*> waypointPathB)
 		{
-			return waypointPathA.Value.H < waypointPathB.Value.H;
+			return waypointPathA.Value->H < waypointPathB.Value->H;
 		});
 
 	TPair<AAWaypointActor*, WaypointPathFinding*> markerPathWaypoint = openPathToWaypointTarget[0];
@@ -141,13 +235,21 @@ void AEnemyPawn::SearchWaypointPath(TPair<AAWaypointActor*, WaypointPathFinding*
 
 void AEnemyPawn::SetWaypointGHF(TPair<AAWaypointActor*, WaypointPathFinding*> thisPathWaypoint, AAWaypointActor* neighborWaypoint, AAWaypointActor* goalWaypoint)
 {
+	if (!thisPathWaypoint.Key || !neighborWaypoint || !goalWaypoint)
+	{
+		UE_LOG(LogTemp, Warning, TEXT("Invalid waypoint(s) in SetWaypointGHF."));
+		return;
+	}
+
 	float G = FVector::Dist(thisPathWaypoint.Key->GetActorLocation(), neighborWaypoint->GetActorLocation()) + thisPathWaypoint.Value->G;
 	float H = FVector::Dist(neighborWaypoint->GetActorLocation(), goalWaypoint->GetActorLocation());
 	float F = G + H;
 
 	if (!UpdateWaypoint(neighborWaypoint, G, H, F, thisPathWaypoint))
 	{
+
 		TPair<AAWaypointActor*, WaypointPathFinding*> newNeighborWaypoint;
+		newNeighborWaypoint.Value = new WaypointPathFinding();
 		newNeighborWaypoint.Key = neighborWaypoint;
 		newNeighborWaypoint.Value->G = G;
 		newNeighborWaypoint.Value->H = H;
@@ -192,15 +294,79 @@ bool AEnemyPawn::IsClosedWaypoint(AAWaypointActor* thisWaypoint)
 
 void AEnemyPawn::SetWaypointPath()
 {
+	if (!lastPathWaypoint.Key || !lastPathWaypoint.Value)
+	{
+		UE_LOG(LogTemp, Warning, TEXT("Invalid lastPathWaypoint in SetWaypointPath."));
+		return;
+	}
+
 	AAWaypointActor* beginPathWaypointActor = lastPathWaypoint.Key;
 	WaypointPathFinding* beginPathWaypoint = lastPathWaypoint.Value;
 
+	setPathToWaypointTarget.Add(beginPathWaypointActor);
+
 	while (startPathWaypoint.Key != beginPathWaypointActor && beginPathWaypointActor != nullptr)
 	{
+		beginPathWaypointActor = beginPathWaypoint->parentWaypointActor;
 		setPathToWaypointTarget.Add(beginPathWaypointActor);
 		beginPathWaypoint = beginPathWaypoint->parentWaypoint;
 	}
 
-	setPathToWaypointTarget.Add(beginPathWaypointActor);
+	if (beginPathWaypointActor != startPathWaypoint.Key)
+	{
+		setPathToWaypointTarget.Add(startPathWaypoint.Key);
+	}
+
+	if (setPathToWaypointTarget.Num() > 0)
+	{
+		for (AAWaypointActor* way : setPathToWaypointTarget)
+		{
+			if (GEngine)
+			{
+				GEngine->AddOnScreenDebugMessage(
+					-1,
+					5.f,
+					FColor::Yellow,
+					FString::Printf(TEXT("Waypoint Path Location: %s"), *way->GetActorLocation().ToString())
+				);
+			}
+		}
+
+		while (nextWaypoint == currentWaypoint && setPathToWaypointTarget.Num() > 0)
+		{
+			nextWaypoint = setPathToWaypointTarget.Pop();
+		}
+	}
+}
+
+AAWaypointActor* AEnemyPawn::GetRandomTargetWaypoint()
+{
+	if (allWaypoints.Num() > 0)
+	{
+		return allWaypoints[FMath::RandRange(0, allWaypoints.Num() - 1)];
+	}
+
+	return nullptr;
+}
+
+void AEnemyPawn::OnOverlapBegin(UPrimitiveComponent* OverlapComponent,
+	AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex,
+	bool bFromSweep, const FHitResult& SweepResult)
+{
+	if (OtherActor && OtherActor != this)
+	{
+		if (AAWaypointActor* hitWaypointActor = Cast<AAWaypointActor>(OtherActor))
+		{
+			currentWaypoint = hitWaypointActor;
+
+			if (!hasReachedDestination)
+			{
+				if (setPathToWaypointTarget.Num() > 0)
+				{
+					nextWaypoint = setPathToWaypointTarget.Pop();
+				}
+			}
+		}
+	}
 }
 
