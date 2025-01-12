@@ -151,7 +151,11 @@ struct Z_Construct_UClass_AAPlayerPawn_Statics
 		{ "ModuleRelativePath", "APlayerPawn.h" },
 	};
 	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_cameraRotationSpeed_MetaData[] = {
-		{ "Category", "Camera" },
+		{ "Category", "Camera Speed" },
+		{ "ModuleRelativePath", "APlayerPawn.h" },
+	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_playerRotationSpeed_MetaData[] = {
+		{ "Category", "Player Rotation Speed" },
 		{ "ModuleRelativePath", "APlayerPawn.h" },
 	};
 	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_CollisionComponentReference_MetaData[] = {
@@ -167,6 +171,7 @@ struct Z_Construct_UClass_AAPlayerPawn_Statics
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_InputMapping;
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_MoveAction;
 	static const UECodeGen_Private::FFloatPropertyParams NewProp_cameraRotationSpeed;
+	static const UECodeGen_Private::FFloatPropertyParams NewProp_playerRotationSpeed;
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_CollisionComponentReference;
 	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
 	static UObject* (*const DependentSingletons[])();
@@ -185,6 +190,7 @@ const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AAPlayerPawn_S
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AAPlayerPawn_Statics::NewProp_InputMapping = { "InputMapping", nullptr, (EPropertyFlags)0x0010000000000015, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AAPlayerPawn, InputMapping), Z_Construct_UClass_UInputMappingContext_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_InputMapping_MetaData), NewProp_InputMapping_MetaData) };
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AAPlayerPawn_Statics::NewProp_MoveAction = { "MoveAction", nullptr, (EPropertyFlags)0x0114000000000015, UECodeGen_Private::EPropertyGenFlags::Object | UECodeGen_Private::EPropertyGenFlags::ObjectPtr, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AAPlayerPawn, MoveAction), Z_Construct_UClass_UInputAction_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_MoveAction_MetaData), NewProp_MoveAction_MetaData) };
 const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_AAPlayerPawn_Statics::NewProp_cameraRotationSpeed = { "cameraRotationSpeed", nullptr, (EPropertyFlags)0x0010000000000015, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AAPlayerPawn, cameraRotationSpeed), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_cameraRotationSpeed_MetaData), NewProp_cameraRotationSpeed_MetaData) };
+const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_AAPlayerPawn_Statics::NewProp_playerRotationSpeed = { "playerRotationSpeed", nullptr, (EPropertyFlags)0x0010000000000015, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AAPlayerPawn, playerRotationSpeed), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_playerRotationSpeed_MetaData), NewProp_playerRotationSpeed_MetaData) };
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AAPlayerPawn_Statics::NewProp_CollisionComponentReference = { "CollisionComponentReference", nullptr, (EPropertyFlags)0x00200800000a001d, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AAPlayerPawn, CollisionComponentReference), Z_Construct_UClass_UBoxComponent_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_CollisionComponentReference_MetaData), NewProp_CollisionComponentReference_MetaData) };
 const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_AAPlayerPawn_Statics::PropPointers[] = {
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AAPlayerPawn_Statics::NewProp_Camera,
@@ -193,6 +199,7 @@ const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_AAPlayerP
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AAPlayerPawn_Statics::NewProp_InputMapping,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AAPlayerPawn_Statics::NewProp_MoveAction,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AAPlayerPawn_Statics::NewProp_cameraRotationSpeed,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AAPlayerPawn_Statics::NewProp_playerRotationSpeed,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AAPlayerPawn_Statics::NewProp_CollisionComponentReference,
 };
 static_assert(UE_ARRAY_COUNT(Z_Construct_UClass_AAPlayerPawn_Statics::PropPointers) < 2048);
@@ -236,10 +243,10 @@ AAPlayerPawn::~AAPlayerPawn() {}
 struct Z_CompiledInDeferFile_FID_GhostTrap_Source_GhostTrap_APlayerPawn_h_Statics
 {
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_AAPlayerPawn, AAPlayerPawn::StaticClass, TEXT("AAPlayerPawn"), &Z_Registration_Info_UClass_AAPlayerPawn, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AAPlayerPawn), 3217088568U) },
+		{ Z_Construct_UClass_AAPlayerPawn, AAPlayerPawn::StaticClass, TEXT("AAPlayerPawn"), &Z_Registration_Info_UClass_AAPlayerPawn, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AAPlayerPawn), 3863755327U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_GhostTrap_Source_GhostTrap_APlayerPawn_h_395863033(TEXT("/Script/GhostTrap"),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_GhostTrap_Source_GhostTrap_APlayerPawn_h_3464684072(TEXT("/Script/GhostTrap"),
 	Z_CompiledInDeferFile_FID_GhostTrap_Source_GhostTrap_APlayerPawn_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_GhostTrap_Source_GhostTrap_APlayerPawn_h_Statics::ClassInfo),
 	nullptr, 0,
 	nullptr, 0);

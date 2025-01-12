@@ -70,6 +70,8 @@ void AAPlayerPawn::Tick(float DeltaTime)
 	Super::Tick(DeltaTime);
 
 	Seek(playerNextWaypoint->GetActorLocation(), DeltaTime);
+	UpdatePlayerRotation(DeltaTime);
+	UpdateCameraRotation(DeltaTime);
 
 }
 
@@ -150,20 +152,19 @@ void AAPlayerPawn::Move(const FInputActionValue& Value)
 	
 	if (MovementInput.X < 0) // Left
 	{
-		if (GEngine)
-		{
-			GEngine->AddOnScreenDebugMessage(
-				-1,
-				5.f,
-				FColor::Yellow,
-				FString::Printf(TEXT("The Movement Left: %s"), *MovementInput.ToString())
-			);
-		}
 		ApplyWaypointMovement(playerCurrentWaypoint->pathLeftWaypoints);
+
+		// Correct the Rotation lol
+		MovementInput.X *= -1;
+
+
 	}
 	else if (MovementInput.X > 0) // Right
 	{
 		ApplyWaypointMovement(playerCurrentWaypoint->pathRightWaypoints);
+
+		// Correct the Rotation lol
+		MovementInput.X *= -1;
 	}
 
 	
@@ -177,19 +178,43 @@ void AAPlayerPawn::Move(const FInputActionValue& Value)
 	}
 
 	RotatePlayerTowardsDirection(MovementInput, GetWorld()->GetDeltaSeconds());
-	RotateCameraTowardsForward(GetWorld()->GetDeltaSeconds());
 }
 
 void AAPlayerPawn::RotatePlayerTowardsDirection(const FVector2D& MovementInput, float DeltaTime)
 {
+	if (MovementInput.IsZero())
+	{
+		return;
+	}
 
+	FVector direction = FVector(MovementInput.X, MovementInput.Y, 0.0f).GetSafeNormal2D();
+	
+
+	playerRotation = direction.Rotation();
 }
 
-void AAPlayerPawn::RotateCameraTowardsForward(float DeltaTime)
+void AAPlayerPawn::UpdateCameraRotation(float DeltaTime)
+{
+	if (!Camera)
+	{
+		return;
+	}
+
+	cameraRotation = GetActorRotation();
+
+	FRotator currentCameraRotation = Camera->GetComponentRotation();
+	FRotator newCameraRotation = FMath::RInterpTo(currentCameraRotation, cameraRotation, DeltaTime, cameraRotationSpeed);
+
+	Camera->SetWorldRotation(newCameraRotation);
+}
+
+void AAPlayerPawn::UpdatePlayerRotation(float DeltaTime)
 {
 
+	FRotator currrentRotation = GetActorRotation();
+	FRotator newRotation = FMath::RInterpTo(currrentRotation, playerRotation, DeltaTime, playerRotationSpeed);
+	SetActorRotation(newRotation);
 }
-
 
 void AAPlayerPawn::OnOverlapBegin(UPrimitiveComponent* OverlapComponent,
 	AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex,

@@ -23,7 +23,8 @@ class GHOSTTRAP_API AAPlayerPawn : public AAIBasePawn
 
 private:
 	void RotatePlayerTowardsDirection(const FVector2D& MovementInput, float DeltaTime);
-	void RotateCameraTowardsForward(float DeltaTime);
+	void UpdatePlayerRotation(float DeltaTime);
+	void UpdateCameraRotation(float DeltaTime);
 
 	FRotator playerRotation;
 	FRotator cameraRotation;
@@ -44,8 +45,11 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Input")
 	TObjectPtr<UInputAction> MoveAction;
 
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Camera")
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Camera Speed")
 	float cameraRotationSpeed = 5.0f;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Player Rotation Speed")
+	float playerRotationSpeed = 10.0f;
 
 
 protected:
