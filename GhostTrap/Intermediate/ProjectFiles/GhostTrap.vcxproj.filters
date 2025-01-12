@@ -57,6 +57,12 @@
     <ClCompile Include="..\..\Source\GhostTrap\AWaypointActor.h">
       <Filter>Source\GhostTrap</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Source\GhostTrap\GameManager.cpp">
+      <Filter>Source\GhostTrap</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\GhostTrap\GameManager.h">
+      <Filter>Source\GhostTrap</Filter>
+    </ClCompile>
     <None Include="..\..\Source\GhostTrap\GhostTrap.Build.cs">
       <Filter>Source\GhostTrap</Filter>
     </None>
@@ -66,6 +72,5 @@
     <ClCompile Include="..\..\Source\GhostTrap\GhostTrap.h">
       <Filter>Source\GhostTrap</Filter>
     </ClCompile>
-    <None Include="cpp.hint" />
   </ItemGroup>
 </Project>

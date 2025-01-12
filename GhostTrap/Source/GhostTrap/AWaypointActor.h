@@ -16,8 +16,15 @@ public:
 	AAWaypointActor();
 
 public:
+	UPROPERTY(VisibleAnywhere, Category = "WaypointsLeft")
 	TArray<AAWaypointActor*> pathLeftWaypoints;
+
+	UPROPERTY(VisibleAnywhere, Category = "WaypointsRight")
 	TArray<AAWaypointActor*> pathRightWaypoints;
+
+	UPROPERTY(VisibleAnywhere, Category = "WaypointsUp")
 	TArray<AAWaypointActor*> pathUpWaypoints;
+
+	UPROPERTY(VisibleAnywhere, Category = "WaypointsDown")
 	TArray<AAWaypointActor*> pathDownWaypoints;
 };

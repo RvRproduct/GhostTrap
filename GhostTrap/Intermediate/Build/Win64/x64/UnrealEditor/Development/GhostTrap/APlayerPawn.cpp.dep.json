@@ -37,7 +37,11 @@
             "c:\\users\\segan\\documents\\github\\ghosttrap\\ghosttrap\\intermediate\\build\\win64\\unrealeditor\\inc\\ghosttrap\\uht\\awaypointactor.generated.h",
             "c:\\users\\segan\\documents\\github\\ghosttrap\\ghosttrap\\source\\ghosttrap\\aibasepawn.h",
             "c:\\users\\segan\\documents\\github\\ghosttrap\\ghosttrap\\intermediate\\build\\win64\\unrealeditor\\inc\\ghosttrap\\uht\\aibasepawn.generated.h",
-            "c:\\users\\segan\\documents\\github\\ghosttrap\\ghosttrap\\intermediate\\build\\win64\\unrealeditor\\inc\\ghosttrap\\uht\\aplayerpawn.generated.h"
+            "c:\\users\\segan\\documents\\github\\ghosttrap\\ghosttrap\\intermediate\\build\\win64\\unrealeditor\\inc\\ghosttrap\\uht\\aplayerpawn.generated.h",
+            "i:\\ue_5.5\\engine\\plugins\\enhancedinput\\source\\enhancedinput\\public\\inputmappingcontext.h",
+            "i:\\ue_5.5\\engine\\plugins\\enhancedinput\\source\\enhancedinput\\public\\enhancedactionkeymapping.h",
+            "i:\\ue_5.5\\engine\\plugins\\enhancedinput\\intermediate\\build\\win64\\unrealeditor\\inc\\enhancedinput\\uht\\enhancedactionkeymapping.generated.h",
+            "i:\\ue_5.5\\engine\\plugins\\enhancedinput\\intermediate\\build\\win64\\unrealeditor\\inc\\enhancedinput\\uht\\inputmappingcontext.generated.h"
         ],
         "ImportedModules": [],
         "ImportedHeaderUnits": []

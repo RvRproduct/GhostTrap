@@ -1,6 +1,8 @@
 // Created By Roberto Reynoso - RvRproduct
-
 #include "APlayerPawn.h"
+
+#include "InputMappingContext.h"
+
 
 // Sets default values
 AAPlayerPawn::AAPlayerPawn()
@@ -31,17 +33,17 @@ void AAPlayerPawn::BeginPlay()
 		this->SetActorLocation(playerCurrentWaypoint->GetActorLocation());
 	}
 
-	if (!CollisionComponent)
+	if (!CollisionComponentReference)
 	{
 
-		CollisionComponent = FindComponentByClass<UBoxComponent>();
+		CollisionComponentReference = FindComponentByClass<UBoxComponent>();
 
-		if (CollisionComponent)
+		if (CollisionComponentReference)
 		{
-			UE_LOG(LogTemp, Display, TEXT("The Collision Component Found: %s"), *CollisionComponent->GetName());
-			CollisionComponent->SetCollisionEnabled(ECollisionEnabled::QueryAndPhysics);
-			CollisionComponent->SetCollisionResponseToAllChannels(ECollisionResponse::ECR_Block);
-			CollisionComponent->OnComponentBeginOverlap.AddDynamic(this, &AAPlayerPawn::OnOverlapBegin);
+			UE_LOG(LogTemp, Display, TEXT("The Collision Component Found: %s"), *CollisionComponentReference->GetName());
+			CollisionComponentReference->SetCollisionEnabled(ECollisionEnabled::QueryAndPhysics);
+			CollisionComponentReference->SetCollisionResponseToAllChannels(ECollisionResponse::ECR_Block);
+			CollisionComponentReference->OnComponentBeginOverlap.AddDynamic(this, &AAPlayerPawn::OnOverlapBegin);
 		}
 		else
 		{
@@ -66,13 +68,18 @@ void AAPlayerPawn::SetupPlayerInputComponent(UInputComponent* PlayerInputCompone
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
 
+	if (APlayerController* PlayerController = Cast<APlayerController>(Controller))
+	{
+		if (UEnhancedInputLocalPlayerSubsystem* Subsystem = ULocalPlayer::GetSubsystem<UEnhancedInputLocalPlayerSubsystem>(PlayerController->GetLocalPlayer()))
+		{
+			Subsystem->AddMappingContext(InputMapping, 0);
+		}
+	}
+
 	if (UEnhancedInputComponent* EnhancedInputComponent = Cast<UEnhancedInputComponent>(PlayerInputComponent))
 	{
 		// Binding Each Movement Direction
-		EnhancedInputComponent->BindAction(MoveLeftAction, ETriggerEvent::Triggered, this, &AAPlayerPawn::MoveLeft);
-		EnhancedInputComponent->BindAction(MoveRightAction, ETriggerEvent::Triggered, this, &AAPlayerPawn::MoveRight);
-		EnhancedInputComponent->BindAction(MoveUpAction, ETriggerEvent::Triggered, this, &AAPlayerPawn::MoveUp);
-		EnhancedInputComponent->BindAction(MoveDownAction, ETriggerEvent::Triggered, this, &AAPlayerPawn::MoveDown);
+		EnhancedInputComponent->BindAction(MoveAction, ETriggerEvent::Triggered, this, &AAPlayerPawn::Move);
 	}
 
 }
@@ -117,42 +124,35 @@ void AAPlayerPawn::ApplyWaypointMovement(TArray<AAWaypointActor*> pathDirectionW
 	playerNextWaypoint = targetWaypoint;
 }
 
-void AAPlayerPawn::MoveLeft(const FInputActionValue& Value)
+void AAPlayerPawn::Move(const FInputActionValue& Value)
 {
-	const float InputValue = Value.Get<float>();
+	FVector2D MovementInput = Value.Get<FVector2D>();
 
-	if (InputValue != 0.0f)
+	if (GEngine)
+	{
+		GEngine->AddOnScreenDebugMessage(
+			-1,
+			5.f,
+			FColor::Yellow,
+			FString::Printf(TEXT("The Movement Input: %s"), *MovementInput.ToString())
+		);
+	}
+	
+	if (MovementInput.X < 0) // Left
 	{
 		ApplyWaypointMovement(playerCurrentWaypoint->pathLeftWaypoints);
 	}
-}
-
-
-void AAPlayerPawn::MoveRight(const FInputActionValue& Value)
-{
-	const float InputValue = Value.Get<float>();
-
-	if (InputValue != 0.0f)
+	else if (MovementInput.X > 0) // Right
 	{
 		ApplyWaypointMovement(playerCurrentWaypoint->pathRightWaypoints);
 	}
-}
 
-void AAPlayerPawn::MoveUp(const FInputActionValue& Value)
-{
-	const float InputValue = Value.Get<float>();
-
-	if (InputValue != 0.0f)
+	
+	if (MovementInput.Y > 0) // Up
 	{
 		ApplyWaypointMovement(playerCurrentWaypoint->pathUpWaypoints);
 	}
-}
-
-void AAPlayerPawn::MoveDown(const FInputActionValue& Value)
-{
-	const float InputValue = Value.Get<float>();
-
-	if (InputValue != 0.0f)
+	else if (MovementInput.Y < 0) // Down
 	{
 		ApplyWaypointMovement(playerCurrentWaypoint->pathDownWaypoints);
 	}

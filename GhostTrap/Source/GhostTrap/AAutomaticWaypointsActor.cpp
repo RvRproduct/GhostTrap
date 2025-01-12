@@ -11,7 +11,8 @@ AAAutomaticWaypointsActor::AAAutomaticWaypointsActor()
 void AAAutomaticWaypointsActor::BeginPlay()
 {
 	Super::BeginPlay();
-	
+
+	SetUpWaypoints();
 }
 
 

@@ -27,17 +27,12 @@ public:
 
 	AAWaypointActor* playerNextWaypoint;
 
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Input")
-	TObjectPtr<UInputAction> MoveLeftAction;
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Input Mapping")
+	class UInputMappingContext* InputMapping;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Input")
-	TObjectPtr<UInputAction> MoveRightAction;
+	TObjectPtr<UInputAction> MoveAction;
 
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Input")
-	TObjectPtr<UInputAction> MoveUpAction;
-
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Input")
-	TObjectPtr<UInputAction> MoveDownAction;
 
 protected:
 
@@ -45,7 +40,7 @@ protected:
 	virtual void BeginPlay() override;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Collision", meta = (AllowPrivateAccess = "true"))
-	UBoxComponent* CollisionComponent;
+	UBoxComponent* CollisionComponentReference;
 
 public:	
 	// Called every frame
@@ -54,10 +49,7 @@ public:
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
-	void MoveLeft(const FInputActionValue& Value);
-	void MoveRight(const FInputActionValue& Value);
-	void MoveUp(const FInputActionValue& Value);
-	void MoveDown(const FInputActionValue& Value);
+	void Move(const FInputActionValue& Value);
 	void ApplyWaypointMovement(TArray<AAWaypointActor*> pathDirectionWaypoints);
 
 	UFUNCTION()
