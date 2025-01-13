@@ -27,13 +27,13 @@ private:
 	void UpdateCameraRotation(float DeltaTime);
 
 	FVector2D lastDirection = FVector2D(0.0f, 1.0f);
-	
+
 	FRotator cameraRotation;
 
 	bool isJumping = false;
 	float jumpHeight = 250.0f;
 	float jumpDuration = 0.8f;
-	float jumpStartZ = 0.0f;  
+	float jumpStartZ = 0.0f;
 	float jumpProgress = 0.0f;
 
 public:
@@ -44,8 +44,11 @@ public:
 
 
 	bool isHidden = false;
+	float timer = 0.0f;
 	bool hasPowerUp = false;
+	float maxTimerPowerUp = 10.0f;
 	bool isHitSlowDown = false;
+	float maxTimerSlowDown = 2.0f;
 
 	UPROPERTY(EditAnywhere, Category = "Current Waypoint")
 	AAWaypointActor* playerCurrentWaypoint;
@@ -77,7 +80,7 @@ protected:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Collision", meta = (AllowPrivateAccess = "true"))
 	UBoxComponent* CollisionComponentReference;
 
-public:	
+public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
@@ -93,4 +96,6 @@ public:
 	void OnOverlapBegin(UPrimitiveComponent* OverlapComponent,
 		AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex,
 		bool bFromSweep, const FHitResult& SweepResult);
+
+	void DebuffsAndBuffs(float DeltaTime);
 };

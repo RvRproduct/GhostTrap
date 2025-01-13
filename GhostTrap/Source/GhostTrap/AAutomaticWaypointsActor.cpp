@@ -97,7 +97,7 @@ void AAAutomaticWaypointsActor::CheckIfWaypointPathIsBlocked(UWorld* World, Wayp
 		CollisionParams
 		);
 
-	DrawDebugLine(World, Start, End, FColor::Green, false, 2.0f, 0, 1.0f);
+	// DrawDebugLine(World, Start, End, FColor::Green, false, 2.0f, 0, 1.0f);
 
 	if (bHit)
 	{
@@ -106,7 +106,7 @@ void AAAutomaticWaypointsActor::CheckIfWaypointPathIsBlocked(UWorld* World, Wayp
 		if (HitActor && HitActor->ActorHasTag(TagToCheck))
 		{
 			// We will not add this to the waypoint as a valid path
-			if (GEngine)
+			/*if (GEngine)
 			{
 				GEngine->AddOnScreenDebugMessage(
 					-1,
@@ -114,7 +114,7 @@ void AAAutomaticWaypointsActor::CheckIfWaypointPathIsBlocked(UWorld* World, Wayp
 					FColor::Yellow,
 					FString::Printf(TEXT("Made a Collision with Wall"))
 				);
-			}
+			}*/
 		}
 		else
 		{

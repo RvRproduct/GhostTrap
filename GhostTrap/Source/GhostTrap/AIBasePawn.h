@@ -24,14 +24,16 @@ public:
 	// Sets default values for this pawn's properties
 	AAIBasePawn();
 
+	UPROPERTY(EditAnywhere, Category = "Movement")
+	float maxSpeed = 600.0f;
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
 	MovementDirection currentMovementDirection;
 
-	UPROPERTY(EditAnywhere, Category = "Movement")
-	float maxSpeed = 600.0f;
+	
 
 
 	UPROPERTY(VisibleAnywhere, Category = "Movement")

@@ -1,7 +1,9 @@
 // Created By Roberto Reynoso - RvRproduct
-
-
 #include "EnemyPawn.h"
+
+#include "Kismet/GameplayStatics.h"
+
+
 
 // Sets default values
 AEnemyPawn::AEnemyPawn()
@@ -36,14 +38,16 @@ void AEnemyPawn::BeginPlay()
 
 		if (CollisionComponentReference)
 		{
-			UE_LOG(LogTemp, Display, TEXT("The Collision Component Found: %s"), *CollisionComponentReference->GetName());
-			CollisionComponentReference->SetCollisionEnabled(ECollisionEnabled::QueryAndPhysics);
-			CollisionComponentReference->SetCollisionResponseToAllChannels(ECollisionResponse::ECR_Block);
+			//UE_LOG(LogTemp, Display, TEXT("The Collision Component Found: %s"), *CollisionComponentReference->GetName());
+			CollisionComponentReference->SetCollisionEnabled(ECollisionEnabled::QueryOnly);
+
+			// Set the response to overlap with all channels (do not block, only overlap)
+			CollisionComponentReference->SetCollisionResponseToAllChannels(ECollisionResponse::ECR_Overlap);
 			CollisionComponentReference->OnComponentBeginOverlap.AddDynamic(this, &AEnemyPawn::OnOverlapBegin);
 		}
 		else
 		{
-			UE_LOG(LogTemp, Display, TEXT("The Collision Component Not Found"));
+			//UE_LOG(LogTemp, Display, TEXT("The Collision Component Not Found"));
 		}
 
 	}
@@ -243,7 +247,7 @@ void AEnemyPawn::SetWaypointGHF(TPair<AAWaypointActor*, WaypointPathFinding*> th
 {
 	if (!thisPathWaypoint.Key || !neighborWaypoint || !goalWaypoint)
 	{
-		UE_LOG(LogTemp, Warning, TEXT("Invalid waypoint(s) in SetWaypointGHF."));
+		// UE_LOG(LogTemp, Warning, TEXT("Invalid waypoint(s) in SetWaypointGHF."));
 		return;
 	}
 
@@ -302,7 +306,7 @@ void AEnemyPawn::SetWaypointPath()
 {
 	if (!lastPathWaypoint.Key || !lastPathWaypoint.Value)
 	{
-		UE_LOG(LogTemp, Warning, TEXT("Invalid lastPathWaypoint in SetWaypointPath."));
+		// UE_LOG(LogTemp, Warning, TEXT("Invalid lastPathWaypoint in SetWaypointPath."));
 		return;
 	}
 
@@ -325,7 +329,7 @@ void AEnemyPawn::SetWaypointPath()
 
 	if (setPathToWaypointTarget.Num() > 0)
 	{
-		for (AAWaypointActor* way : setPathToWaypointTarget)
+		/*for (AAWaypointActor* way : setPathToWaypointTarget)
 		{
 			if (GEngine)
 			{
@@ -336,7 +340,7 @@ void AEnemyPawn::SetWaypointPath()
 					FString::Printf(TEXT("Waypoint Path Location: %s"), *way->GetActorLocation().ToString())
 				);
 			}
-		}
+		}*/
 
 		while (nextWaypoint == currentWaypoint && setPathToWaypointTarget.Num() > 0)
 		{
@@ -361,6 +365,21 @@ void AEnemyPawn::OnOverlapBegin(UPrimitiveComponent* OverlapComponent,
 {
 	if (OtherActor && OtherActor != this)
 	{
+		if (AAPlayerPawn* hitPlayerPawn = Cast<AAPlayerPawn>(OtherActor))
+		{
+			/*if (GEngine)
+			{
+				GEngine->AddOnScreenDebugMessage(
+					-1,
+					5.f,
+					FColor::Yellow,
+					FString::Printf(TEXT("You hit the player Gonk"))
+				);
+			}*/
+
+			UGameplayStatics::OpenLevel(GetWorld(), FName(TEXT("YouGonkLevel")));
+		}
+
 		if (AAWaypointActor* hitWaypointActor = Cast<AAWaypointActor>(OtherActor))
 		{
 			currentWaypoint = hitWaypointActor;
@@ -373,6 +392,8 @@ void AEnemyPawn::OnOverlapBegin(UPrimitiveComponent* OverlapComponent,
 				}
 			}
 		}
+
+		
 	}
 }
 

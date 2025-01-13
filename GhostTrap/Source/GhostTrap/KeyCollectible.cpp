@@ -23,14 +23,16 @@ void AKeyCollectible::BeginPlay()
 
 		if (CollisionComponentReference)
 		{
-			UE_LOG(LogTemp, Display, TEXT("The Collision Component Found: %s"), *CollisionComponentReference->GetName());
-			CollisionComponentReference->SetCollisionEnabled(ECollisionEnabled::QueryAndPhysics);
-			CollisionComponentReference->SetCollisionResponseToAllChannels(ECollisionResponse::ECR_Block);
+			// UE_LOG(LogTemp, Display, TEXT("The Collision Component Found: %s"), *CollisionComponentReference->GetName());
+			CollisionComponentReference->SetCollisionEnabled(ECollisionEnabled::QueryOnly);
+
+			// Set the response to overlap with all channels (do not block, only overlap)
+			CollisionComponentReference->SetCollisionResponseToAllChannels(ECollisionResponse::ECR_Overlap);
 			CollisionComponentReference->OnComponentBeginOverlap.AddDynamic(this, &AKeyCollectible::OnOverlapBegin);
 		}
 		else
 		{
-			UE_LOG(LogTemp, Display, TEXT("The Collision Component Not Found"));
+			// UE_LOG(LogTemp, Display, TEXT("The Collision Component Not Found"));
 		}
 
 	}

@@ -50,14 +50,16 @@ void AAPlayerPawn::BeginPlay()
 
 		if (CollisionComponentReference)
 		{
-			UE_LOG(LogTemp, Display, TEXT("The Collision Component Found: %s"), *CollisionComponentReference->GetName());
-			CollisionComponentReference->SetCollisionEnabled(ECollisionEnabled::QueryAndPhysics);
-			CollisionComponentReference->SetCollisionResponseToAllChannels(ECollisionResponse::ECR_Block);
+			//UE_LOG(LogTemp, Display, TEXT("The Collision Component Found: %s"), *CollisionComponentReference->GetName());
+			CollisionComponentReference->SetCollisionEnabled(ECollisionEnabled::QueryOnly);
+
+			// Set the response to overlap with all channels (do not block, only overlap)
+			CollisionComponentReference->SetCollisionResponseToAllChannels(ECollisionResponse::ECR_Overlap);
 			CollisionComponentReference->OnComponentBeginOverlap.AddDynamic(this, &AAPlayerPawn::OnOverlapBegin);
 		}
 		else
 		{
-			UE_LOG(LogTemp, Display, TEXT("The Collision Component Not Found"));
+			//UE_LOG(LogTemp, Display, TEXT("The Collision Component Not Found"));
 		}
 
 	}
@@ -73,6 +75,7 @@ void AAPlayerPawn::Tick(float DeltaTime)
 	ApplyJump(DeltaTime);
 	UpdatePlayerRotation(DeltaTime);
 	UpdateCameraRotation(DeltaTime);
+	DebuffsAndBuffs(DeltaTime);
 
 }
 
@@ -142,7 +145,7 @@ void AAPlayerPawn::Move(const FInputActionValue& Value)
 {
 	FVector2D MovementInput = Value.Get<FVector2D>();
 
-	if (GEngine)
+	/*if (GEngine)
 	{
 		GEngine->AddOnScreenDebugMessage(
 			-1,
@@ -150,7 +153,7 @@ void AAPlayerPawn::Move(const FInputActionValue& Value)
 			FColor::Yellow,
 			FString::Printf(TEXT("The Movement Input: %s"), *MovementInput.ToString())
 		);
-	}
+	}*/
 	
 	if (MovementInput.X < 0) // Left
 	{
@@ -167,7 +170,7 @@ void AAPlayerPawn::Move(const FInputActionValue& Value)
 	if (MovementInput.Y > 0) // Up Moves whereever facing
 	{
 
-		if (GEngine)
+		/*if (GEngine)
 		{
 			GEngine->AddOnScreenDebugMessage(
 				-1,
@@ -175,7 +178,7 @@ void AAPlayerPawn::Move(const FInputActionValue& Value)
 				FColor::Yellow,
 				FString::Printf(TEXT("This is the Rotation: %s"), *GetActorRotation().ToString())
 			);
-		}
+		}*/
 
 		if (FMath::Abs(yaw) <= Tolerance)
 		{
@@ -309,6 +312,32 @@ void AAPlayerPawn::OnOverlapBegin(UPrimitiveComponent* OverlapComponent,
 		if (AAWaypointActor* hitWaypointActor = Cast<AAWaypointActor>(OtherActor))
 		{
 			playerCurrentWaypoint = hitWaypointActor;
+		}
+	}
+}
+
+void AAPlayerPawn::DebuffsAndBuffs(float DeltaTime)
+{
+	if (hasPowerUp)
+	{
+		isHitSlowDown = false;
+
+		timer += DeltaTime;
+
+		if (timer >= maxTimerPowerUp)
+		{
+			hasPowerUp = false;
+			maxSpeed = 600.0f;
+		}
+	}
+	else if (isHitSlowDown)
+	{
+		timer += DeltaTime;
+
+		if (timer >= maxTimerSlowDown)
+		{
+			isHitSlowDown = false;
+			maxSpeed = 600.0f;
 		}
 	}
 }

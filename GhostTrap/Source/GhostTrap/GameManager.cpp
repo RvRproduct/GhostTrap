@@ -33,6 +33,8 @@ void AGameManager::BeginPlay()
 			break;
 		}
 	}
+
+	SetupKeyCollectibleCount();
 	
 }
 
