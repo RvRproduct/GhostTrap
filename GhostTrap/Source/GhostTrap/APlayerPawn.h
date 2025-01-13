@@ -27,7 +27,7 @@ private:
 	void UpdateCameraRotation(float DeltaTime);
 
 	FVector2D lastDirection = FVector2D(0.0f, 1.0f);
-	FRotator playerRotation;
+	
 	FRotator cameraRotation;
 
 	bool isJumping = false;
@@ -39,6 +39,9 @@ private:
 public:
 	// Sets default values for this pawn's properties
 	AAPlayerPawn();
+
+	FRotator playerRotation;
+
 
 	bool isHidden = false;
 	bool hasPowerUp = false;

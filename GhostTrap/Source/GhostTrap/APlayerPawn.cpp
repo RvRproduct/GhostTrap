@@ -160,12 +160,12 @@ void AAPlayerPawn::Move(const FInputActionValue& Value)
 	{
 		RotatePlayerTowardsDirection(MovementInput, GetWorld()->GetDeltaSeconds());
 	}
+
+	int32 yaw = FMath::RoundToInt(GetActorRotation().Yaw);
+	const float Tolerance = 5.0f;
 	
 	if (MovementInput.Y > 0) // Up Moves whereever facing
 	{
-		
-
-		
 
 		if (GEngine)
 		{
@@ -176,10 +176,6 @@ void AAPlayerPawn::Move(const FInputActionValue& Value)
 				FString::Printf(TEXT("This is the Rotation: %s"), *GetActorRotation().ToString())
 			);
 		}
-
-		int32 yaw = FMath::RoundToInt(GetActorRotation().Yaw);
-
-		const float Tolerance = 5.0f;
 
 		if (FMath::Abs(yaw) <= Tolerance)
 		{
@@ -196,6 +192,25 @@ void AAPlayerPawn::Move(const FInputActionValue& Value)
 		else if (FMath::Abs(FMath::Abs(yaw) - 180) <= Tolerance)
 		{
 			ApplyWaypointMovement(playerCurrentWaypoint->pathRightWaypoints);
+		}
+	}
+	else if (MovementInput.Y < 0)
+	{
+		if (FMath::Abs(yaw) <= Tolerance)
+		{
+			ApplyWaypointMovement(playerCurrentWaypoint->pathRightWaypoints);
+		}
+		else if (FMath::Abs(yaw - 90) <= Tolerance)
+		{
+			ApplyWaypointMovement(playerCurrentWaypoint->pathDownWaypoints);
+		}
+		else if (FMath::Abs(yaw + 90) <= Tolerance)
+		{
+			ApplyWaypointMovement(playerCurrentWaypoint->pathUpWaypoints);
+		}
+		else if (FMath::Abs(FMath::Abs(yaw) - 180) <= Tolerance)
+		{
+			ApplyWaypointMovement(playerCurrentWaypoint->pathLeftWaypoints);
 		}
 	}
 }

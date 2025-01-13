@@ -55,6 +55,8 @@ void AEnemyPawn::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
+	FaceThePlayer(DeltaTime);
+
 	if (hasReachedDestination)
 	{
 		if (!hasStartedSearch)
@@ -372,5 +374,27 @@ void AEnemyPawn::OnOverlapBegin(UPrimitiveComponent* OverlapComponent,
 			}
 		}
 	}
+}
+
+void AEnemyPawn::FaceThePlayer(float DeltaTime)
+{
+	if (!playerPawn) return;
+
+	FVector playerLocation = playerPawn->GetActorLocation();
+	FVector directionToPlayer = playerLocation - GetActorLocation();
+
+	directionToPlayer.Z = 0;
+
+	directionToPlayer.Normalize();
+
+	FRotator targetRotation = directionToPlayer.Rotation();
+
+	targetRotation.Yaw -= 90.0f;
+
+	FRotator currentRotation = GetActorRotation();
+
+	FRotator newRotation = FMath::RInterpTo(currentRotation, targetRotation, DeltaTime, 10.0f);
+
+	SetActorRotation(newRotation);
 }
 

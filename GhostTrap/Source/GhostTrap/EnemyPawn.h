@@ -92,6 +92,8 @@ public:
 	AAWaypointActor* GetRandomTargetWaypoint();
 	void SetWaypointPath();
 
+	void FaceThePlayer(float DeltaTime);
+
 	UFUNCTION()
 	void OnOverlapBegin(UPrimitiveComponent* OverlapComponent,
 		AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex,
