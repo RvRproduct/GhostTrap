@@ -252,6 +252,7 @@
     <None Include="..\..\GhostTrap.uproject"/>
     <None Include="..\..\Source\GhostTrap.Target.cs"/>
     <None Include="..\..\Source\GhostTrapEditor.Target.cs"/>
+    <None Include="..\..\.gitignore"/>
     <None Include="..\..\.vsconfig"/>
     <None Include="..\..\Config\DefaultEditor.ini"/>
     <None Include="..\..\Config\DefaultEngine.ini"/>
