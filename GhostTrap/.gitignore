@@ -1,15 +1,3 @@
-#################################
-# Unreal Engine Generated Files #
-#################################
-/[Bb]uild
-/[Bb]uilds
-/Binaries
-/DerivedDataCache
-/Intermediate
-/Saved
-
-#################################
-# Visual Studio Generated Files #
 # Visual Studio 2015 user specific files
 .vs/
 
