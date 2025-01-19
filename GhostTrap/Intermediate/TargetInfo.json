@@ -1,0 +1,14 @@
+{
+	"Targets": [
+		{
+			"Name": "GhostTrap",
+			"Path": "..\\Source\\GhostTrap.Target.cs",
+			"Type": "Game"
+		},
+		{
+			"Name": "GhostTrapEditor",
+			"Path": "..\\Source\\GhostTrapEditor.Target.cs",
+			"Type": "Editor"
+		}
+	]
+}

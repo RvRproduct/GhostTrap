@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <None Include="..\..\GhostTrap.uproject" />
+    <Filter Include="Source">
+      <UniqueIdentifier>{F31BBDD1-B3E8-3BCC-9652-680E16935819}</UniqueIdentifier>
+    </Filter>
+    <None Include="..\..\Source\GhostTrap.Target.cs">
+      <Filter>Source</Filter>
+    </None>
+    <None Include="..\..\Source\GhostTrapEditor.Target.cs">
+      <Filter>Source</Filter>
+    </None>
+    <None Include="..\..\.vsconfig" />
+    <Filter Include="Config">
+      <UniqueIdentifier>{FA535FFB-25E1-3D20-B416-52F9BE21E06E}</UniqueIdentifier>
+    </Filter>
+    <None Include="..\..\Config\DefaultEditor.ini">
+      <Filter>Config</Filter>
+    </None>
+    <None Include="..\..\Config\DefaultEngine.ini">
+      <Filter>Config</Filter>
+    </None>
+    <None Include="..\..\Config\DefaultGame.ini">
+      <Filter>Config</Filter>
+    </None>
+    <None Include="..\..\Config\DefaultInput.ini">
+      <Filter>Config</Filter>
+    </None>
+    <Filter Include="Source\GhostTrap">
+      <UniqueIdentifier>{41AD2A1F-C8C5-3F4E-BD91-BCC3BAC42DE8}</UniqueIdentifier>
+    </Filter>
+    <ClCompile Include="..\..\Source\GhostTrap\AAutomaticWaypointsActor.cpp">
+      <Filter>Source\GhostTrap</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\GhostTrap\AAutomaticWaypointsActor.h">
+      <Filter>Source\GhostTrap</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\GhostTrap\AIBasePawn.cpp">
+      <Filter>Source\GhostTrap</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\GhostTrap\AIBasePawn.h">
+      <Filter>Source\GhostTrap</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\GhostTrap\APlayerPawn.cpp">
+      <Filter>Source\GhostTrap</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\GhostTrap\APlayerPawn.h">
+      <Filter>Source\GhostTrap</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\GhostTrap\AWaypointActor.cpp">
+      <Filter>Source\GhostTrap</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\GhostTrap\AWaypointActor.h">
+      <Filter>Source\GhostTrap</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\GhostTrap\CollectCounterWidget.cpp">
+      <Filter>Source\GhostTrap</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\GhostTrap\CollectCounterWidget.h">
+      <Filter>Source\GhostTrap</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\GhostTrap\EnemyPawn.cpp">
+      <Filter>Source\GhostTrap</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\GhostTrap\EnemyPawn.h">
+      <Filter>Source\GhostTrap</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\GhostTrap\GameManager.cpp">
+      <Filter>Source\GhostTrap</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\GhostTrap\GameManager.h">
+      <Filter>Source\GhostTrap</Filter>
+    </ClCompile>
+    <None Include="..\..\Source\GhostTrap\GhostTrap.Build.cs">
+      <Filter>Source\GhostTrap</Filter>
+    </None>
+    <ClCompile Include="..\..\Source\GhostTrap\GhostTrap.cpp">
+      <Filter>Source\GhostTrap</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\GhostTrap\GhostTrap.h">
+      <Filter>Source\GhostTrap</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\GhostTrap\HidingSpotActor.cpp">
+      <Filter>Source\GhostTrap</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\GhostTrap\HidingSpotActor.h">
+      <Filter>Source\GhostTrap</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\GhostTrap\KeyCollectible.cpp">
+      <Filter>Source\GhostTrap</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\GhostTrap\KeyCollectible.h">
+      <Filter>Source\GhostTrap</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\GhostTrap\PowerUp.cpp">
+      <Filter>Source\GhostTrap</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\GhostTrap\PowerUp.h">
+      <Filter>Source\GhostTrap</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\GhostTrap\SpikeTrap.cpp">
+      <Filter>Source\GhostTrap</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\GhostTrap\SpikeTrap.h">
+      <Filter>Source\GhostTrap</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

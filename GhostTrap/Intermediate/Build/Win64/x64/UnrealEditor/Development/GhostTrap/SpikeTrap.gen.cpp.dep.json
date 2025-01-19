@@ -1,0 +1,19 @@
+{
+    "Version": "1.2",
+    "Data": {
+        "Source": "c:\\users\\segan\\documents\\github\\ghosttrap\\ghosttrap\\intermediate\\build\\win64\\unrealeditor\\inc\\ghosttrap\\uht\\spiketrap.gen.cpp",
+        "ProvidedModule": "",
+        "PCH": "c:\\users\\segan\\documents\\github\\ghosttrap\\ghosttrap\\intermediate\\build\\win64\\x64\\ghosttrapeditor\\development\\unrealed\\sharedpch.unrealed.project.valapi.cpp20.h.pch",
+        "Includes": [
+            "c:\\users\\segan\\documents\\github\\ghosttrap\\ghosttrap\\intermediate\\build\\win64\\x64\\unrealeditor\\development\\ghosttrap\\definitions.ghosttrap.h",
+            "c:\\users\\segan\\documents\\github\\ghosttrap\\ghosttrap\\source\\ghosttrap\\spiketrap.h",
+            "i:\\ue_5.5\\engine\\source\\runtime\\engine\\classes\\components\\boxcomponent.h",
+            "i:\\ue_5.5\\engine\\source\\runtime\\engine\\classes\\components\\shapecomponent.h",
+            "i:\\ue_5.5\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\engine\\uht\\shapecomponent.generated.h",
+            "i:\\ue_5.5\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\engine\\uht\\boxcomponent.generated.h",
+            "c:\\users\\segan\\documents\\github\\ghosttrap\\ghosttrap\\intermediate\\build\\win64\\unrealeditor\\inc\\ghosttrap\\uht\\spiketrap.generated.h"
+        ],
+        "ImportedModules": [],
+        "ImportedHeaderUnits": []
+    }
+}
